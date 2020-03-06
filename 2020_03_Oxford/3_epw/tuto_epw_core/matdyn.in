@@ -1,0 +1,11 @@
+&input
+asr='simple', amass(1)=28.855, amass(2)=12.01078, q_in_cryst_coord= .true.,
+fildyn='sic.dyn', flfrc='sic.fc', flfrq='sic.freq', q_in_band_form=.true.
+/
+6
+0.0000   0.0000   0.0000   40   ! \Gamma  ! 40 points
+0.5000   0.0000   0.5000   40   ! X
+0.5000   0.2500   0.7500   40   ! W
+0.5000   0.5000   0.5000   40   ! L
+0.0000   0.0000   0.0000   40   ! \Gamma
+0.3750   0.3750   0.7500    1   ! K

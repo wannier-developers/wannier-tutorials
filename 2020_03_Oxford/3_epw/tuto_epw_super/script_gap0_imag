@@ -1,0 +1,6 @@
+#!/bin/tcsh
+
+awk 'FNR==2 {print FILENAME,$0}' mgb2.imag_iso_* | awk '{print $1 "   " $4}' > mgb2.imag_iso_gap0
+sed -i 's/mgb2.imag_iso_//' mgb2.imag_iso_gap0
+
+exit

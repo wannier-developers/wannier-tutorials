@@ -1,0 +1,80 @@
+--
+&inputepw
+  prefix      = 'mgb2',
+  amass(1)    = 24.305,
+  amass(2)    = 10.811
+  outdir      = './'
+
+  ep_coupling = .false.
+  elph        = .false.
+  kmaps       = .false.
+  epbwrite    = .true.
+  epbread     = .false.
+  epwwrite    = .true.
+  epwread     = .false.
+
+  etf_mem     =  1 
+
+  nbndsub     =  5
+  nbndskip    =  0
+
+  wannierize  = .false.
+  num_iter    = 500
+  dis_froz_max= 8.8
+  proj(1)     = 'B:pz'
+  proj(2)     = 'f=0.5,1.0,0.5:s'
+  proj(3)     = 'f=0.0,0.5,0.5:s'
+  proj(4)     = 'f=0.5,0.5,0.5:s'
+
+  iverbosity  = 1
+
+  fsthick     = 0.4  ! eV
+  eptemp      = 300  ! K
+  degaussw    = 0.1 ! eV
+
+  ephwrite    = .false.
+
+  eliashberg  = .true.
+
+  laniso = .true.
+  limag = .true.
+
+  nsiter   = 500
+  conv_thr_iaxis = 1.0d-3
+
+  wscut = 0.5 ! eV 
+
+  imag_read = .true. 
+
+  nstemp   = 5
+  tempsmin = 10.00
+  tempsmax = 30.00
+
+  muc     = 0.1
+
+  dvscf_dir   = './save'
+  
+  nk1         = 6
+  nk2         = 6
+  nk3         = 6
+
+  nq1         = 3
+  nq2         = 3
+  nq3         = 3
+
+  mp_mesh_k = .true.
+  nkf1 = 24
+  nkf2 = 24
+  nkf3 = 24
+
+  nqf1 = 12
+  nqf2 = 12
+  nqf3 = 12
+ /
+  6 cartesian
+  0.0000000   0.0000000   0.0000000  
+  0.0000000   0.0000000   0.2918678  
+  0.0000000   0.3849002   0.0000000  
+  0.0000000   0.3849002   0.2918678  
+  0.3333333   0.5773503   0.0000000  
+  0.3333333   0.5773503   0.2918678  
