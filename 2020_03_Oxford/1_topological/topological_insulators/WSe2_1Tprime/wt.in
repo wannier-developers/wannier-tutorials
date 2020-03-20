@@ -20,11 +20,11 @@ E_FERMI = -2.9600       ! e-fermi
 /
 
 &PARAMETERS
-OmegaNum = 301     ! omega number       
+OmegaNum = 81     ! omega number       
 OmegaMin = -1.0     ! energy interval
 OmegaMax =  0.5     ! energy interval
-Nk1 = 61          ! number k points 
-Nk2 = 101          ! number k points 
+Nk1 = 41          ! number k points 
+Nk2 = 41          ! number k points 
 NP = 1              ! number of principle layers
 /
 
