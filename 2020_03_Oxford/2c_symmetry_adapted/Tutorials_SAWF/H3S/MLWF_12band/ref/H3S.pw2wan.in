@@ -1,0 +1,6 @@
+&inputpp
+    outdir='../work/'
+    prefix='H3S',
+    seedname = 'H3S'
+    write_unk = .false.
+/

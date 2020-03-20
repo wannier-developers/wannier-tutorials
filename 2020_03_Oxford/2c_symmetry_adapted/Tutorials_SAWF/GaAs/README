@@ -1,0 +1,45 @@
+# symmetry-adapted Wannier functions for GaAs
+
+
+1. Perform scf and nscf calculations. 
+
+    pw.x < GaAs.scf.in > GaAs.scf.out 
+    pw.x < GaAs.nscf.in > GaAs.nscf.out 
+   
+
+
+2. Work on SAWF_As_sp (one s-like and three p-like Wannier functions centered at As). 
+
+    cd SAWF_As_sp/
+    Follow README
+
+
+
+3. (optional)
+   Work on MLWF_As_sp_Saddle [maximally-localized Wannier functions starting from As-atomic-centered projections (+ small perturbation)].
+
+    cd MLWF_As_sp_Saddle/
+    Follow README 
+
+
+
+4. Work on SAWF_Ga_sp (one s-like and three p-like Wannier functions centered at Ga) 
+
+    cd SAWF_Ga_sp/
+    Follow README
+
+
+
+5. Work on SAWF_Ga_s (one s-like Wannier function centered at Ga) 
+
+    cd SAWF_Ga_s/
+    Follow README
+
+
+
+6. Work on SAWF_Ga_p (three p-like Wannier functions centered at Ga) 
+
+    cd SAWF_Ga_p/
+    Follow README
+
+

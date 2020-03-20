@@ -1,0 +1,72 @@
+# symmetry-adapted Wannier functions for Cu
+# (s-like Wannier function centered at (1/4,1/4,1/4) + atomic-centered d-like Wannier functions) 
+
+
+1. Perform scf and nscf calculations. 
+
+    pw.x < Cu.scf.in > Cu.scf.out 
+    pw.x < Cu.nscf.in > Cu.nscf.out 
+   
+
+
+2. Modify Cu.win to turn on symmetry-adapted mode. 
+
+    Uncomment the following two lines in Cu.win
+
+    "!site_symmetry = .true."
+    "!symmetrize_eps=  1d-9 "
+
+
+
+3. Modify Cu.pw2wan.in to turn on symmetry-adapted mode. 
+
+    Set write_dmn to .true. 
+
+
+
+4. Modify Cu.pw2wan.in to use customized symmetry operations compatible to site-symmetry group at (1/4,1/4,1/4).
+   (inversion symmetry needs to be removed)
+
+    Set read_sym to .true. (then pw2wannier90.x will require Cu.sym) 
+
+
+
+5. Prepare Cu.sym file. 
+
+    cp ../GaAs/SAWF_As_sp/GaAs.sym Cu.sym   
+      (symmetry operations taken from the example of GaAs; note that GaAs does not have inversion symmetry)  
+
+
+
+6. Run wannier90 to generate a list of the required overlaps (written into the Cu.nnkp). 
+
+    wannier90.x -pp Cu
+
+
+
+7. Run pw2wannier90 to generate Cu.amn, Cu.mmn, Cu.dmn, and Cu.eig files.
+
+    pw2wannier90.x < Cu.pw2wan.in > Cu.pw2wan.out 
+
+
+
+8. Run wannier90 to construct SAWFs. 
+
+    wannier90.x Cu
+
+
+
+9. Compare the results with those in Fig.3 and Table II in "R. Sakuma, Phys. Rev. B 87, 235109 (2013)". 
+
+    See also ref directory, in which one can find the input files (Cu.win and Cu.pw2wan.in) and an output file (Cu.wout) 
+
+    Band plot: 
+      gnuplot 
+      load "Cu_band.gnu" 
+      replot "DFT_band.dat" w l lt -1, "Cu_band.dat" lt 1  
+
+
+10. Plot the SAWFs using xcrysden.   
+
+    xcrysden --xsf Cu_0000*.xsf
+  

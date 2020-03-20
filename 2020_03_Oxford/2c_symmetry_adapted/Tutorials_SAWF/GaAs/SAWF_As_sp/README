@@ -1,0 +1,36 @@
+# symmetry-adapted mode: one s-like and three p-like Wannier functions centered at As
+
+
+
+1. Confirm the additional parameters for the symmetry-adapted mode in GaAs.win and GaAs.pw2wan.in. 
+
+
+
+2. Run wannier90 to generate a list of the required overlaps (written into the GaAs.nnkp). 
+
+    wannier90.x -pp GaAs
+
+
+
+3. Run pw2wannier90 to generate GaAs.amn, GaAs.mmn, GaAs.dmn, and GaAs.eig files (additionally GaAs.sym file is also created). 
+
+    pw2wannier90.x < GaAs.pw2wan.in > GaAs.pw2wan.out 
+
+
+
+4. Run wannier90 to construct SAWFs. 
+
+    wannier90.x GaAs
+
+
+
+5. Compare the results with those in Table I in "R. Sakuma, Phys. Rev. B 87, 235109 (2013)". 
+
+    See also ref directory, in which one can find the input files (GaAs.win and GaAs.pw2wan.in) and an output file (GaAs.wout) 
+
+
+
+6. Plot the SAWFs using xcrysden.   
+
+    xcrysden --xsf GaAs_0000*.xsf
+  
