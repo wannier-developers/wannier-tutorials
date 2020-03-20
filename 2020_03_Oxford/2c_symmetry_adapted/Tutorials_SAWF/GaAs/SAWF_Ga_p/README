@@ -1,0 +1,55 @@
+# symmetry-adapted mode: three p-like Wannier functions centered at Ga
+
+
+
+1. Set num_wann and fill out the projection part in GaAs.win.  
+
+
+
+2. Modify GaAs.win to turn on symmetry-adapted mode. 
+
+    Uncomment the following two lines in GaAs.win
+
+    "!site_symmetry = .true."
+    "!symmetrize_eps=  1d-9 "
+
+
+
+3. Modify GaAs.pw2wan.in to turn on symmetry-adapted mode. 
+
+    Set write_dmn to .true. 
+
+
+
+4. Run wannier90 to generate a list of the required overlaps (written into the GaAs.nnkp). 
+
+    wannier90.x -pp GaAs
+
+
+
+5. Run pw2wannier90 to generate GaAs.amn, GaAs.mmn, GaAs.dmn, and GaAs.eig files (additionally GaAs.sym file is also created). 
+
+    pw2wannier90.x < GaAs.pw2wan.in > GaAs.pw2wan.out 
+
+
+
+6. Run wannier90 to construct SAWFs. 
+
+    wannier90.x GaAs
+
+
+
+7. Compare the results with those in Figure 1 and Table I in "R. Sakuma, Phys. Rev. B 87, 235109 (2013)". 
+
+    See also ref directory, in which one can find the input files (GaAs.win and GaAs.pw2wan.in) and an output file (GaAs.wout) 
+
+    Band plot: 
+      gnuplot 
+      load "GaAs_band.gnu" 
+      replot "../DFT_band.dat" w l lt -1, "GaAs_band.dat" lt 1  
+
+
+8. Plot the SAWFs using xcrysden.   
+
+    xcrysden --xsf GaAs_0000*.xsf
+  

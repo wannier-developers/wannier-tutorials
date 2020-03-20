@@ -1,0 +1,36 @@
+# maximally-localized Wannier functions: H3S, 12 band model 
+
+
+1. Have a look at H3S.win and H3S.pw2wan.in.
+
+
+
+2. Run wannier90 to generate a list of the required overlaps (written into the H3S.nnkp). 
+
+    wannier90.x -pp H3S
+
+
+
+3. Run pw2wannier90 to generate H3S.amn, H3S.mmn, and H3S.eig files.
+
+    pw2wannier90.x < H3S.pw2wan.in > H3S.pw2wan.out 
+
+
+
+4. Run wannier90 to construct MLWFs. 
+
+    wannier90.x H3S
+
+
+
+5. Check Wannier centers and spreads (see H3S.wout). 
+
+
+
+6. Plot bands.
+
+      gnuplot 
+      load "H3S_band.gnu" 
+      replot "../DFT_band.dat" w l lt -1, "H3S_band.dat" lt 1  
+
+

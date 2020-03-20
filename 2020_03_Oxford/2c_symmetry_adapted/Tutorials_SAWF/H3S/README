@@ -1,0 +1,31 @@
+# symmetry-adapted Wannier functions for H3S
+
+
+1. Perform scf and nscf calculations. 
+
+    pw.x < H3S.scf.in > H3S.scf.out 
+    pw.x < H3S.nscf.in > H3S.nscf.out 
+   
+
+
+2. Work on MLWF_12band (maximally-localized Wannier functions: H3S, 12 band model)
+
+    cd MLWF_12band/
+    Follow README
+
+
+
+3. Work on SAWF_12band (symmetry-adapted Wannier functions: H3S, 12 band model)
+
+    cd SAWF_12band/
+    Follow README
+
+
+
+4. Work on SAWF_7band (symmetry-adapted Wannier functions: H3S, 7 band model)
+
+    cd SAWF_7band/
+    Follow README
+
+
+
