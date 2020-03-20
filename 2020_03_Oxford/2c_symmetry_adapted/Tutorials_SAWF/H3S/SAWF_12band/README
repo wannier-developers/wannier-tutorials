@@ -1,0 +1,48 @@
+# symmetry-adapted Wannier functions: H3S, 12 band model 
+
+
+
+1. Modify H3S.win to turn on symmetry-adapted mode. 
+
+    Uncomment the following two lines in H3S.win
+
+    "!site_symmetry = .true."
+    "!symmetrize_eps=  1d-9 "
+
+
+
+2. Modify H3S.pw2wan.in to turn on symmetry-adapted mode. 
+
+    Set write_dmn to .true. 
+
+
+
+3. Run wannier90 to generate a list of the required overlaps (written into the H3S.nnkp). 
+
+    wannier90.x -pp H3S
+
+
+
+4. Run pw2wannier90 to generate H3S.amn, H3S.mmn, H3S.dmn, and H3S.eig files (additionally H3S.sym file is also created). 
+
+    pw2wannier90.x < H3S.pw2wan.in > H3S.pw2wan.out 
+
+
+
+5. Run wannier90 to construct SAWFs. 
+
+    wannier90.x H3S
+
+
+
+6. Check Wannier centers and spreads (see H3S.wout) & Compare the results with those in "../MLWF_12band/". 
+
+
+
+7. Plot bands.
+
+      gnuplot 
+      load "H3S_band.gnu"
+      replot "../DFT_band.dat" w l lt -1, "H3S_band.dat" lt 1  
+
+

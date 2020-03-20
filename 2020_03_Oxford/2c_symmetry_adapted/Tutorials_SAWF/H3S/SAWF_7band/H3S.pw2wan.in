@@ -1,0 +1,7 @@
+&inputpp
+    outdir='../work/'
+    prefix='H3S',
+    seedname = 'H3S'
+    write_unk = .false.
+    write_dmn = .false. ! additional input for symmetry-adapted mode
+/

@@ -1,0 +1,37 @@
+ &control
+    calculation='scf'
+    restart_mode='from_scratch'
+    tstress = .true.
+    tprnfor = .true.
+    wf_collect = .true.
+    prefix='H3S'
+    pseudo_dir = './pseudo/'
+    outdir = './work/'
+ /
+  &system
+    ibrav = 3
+    celldm(1) = 5.6103525
+    nat = 4
+    ntyp = 2
+    ecutwfc = 45
+    ecutrho = 220
+    occupations='smearing'
+    smearing='methfessel-paxton'
+    degauss=0.02
+    nbnd = 20
+/
+ &electrons
+    conv_thr =  1.0d-11
+    mixing_beta = 0.2
+    diago_full_acc = .true.
+ /
+ATOMIC_SPECIES
+ S 32.066 S.pbe-n-kjpaw_psl.1.0.0.UPF
+ H 1.0079 H.pbe-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS {crystal}
+ S     0.00000   0.00000   0.00000
+ H     0.50000  -0.50000   0.00000
+ H     0.00000   0.50000  -0.50000
+ H     0.50000   0.00000   0.50000
+K_POINTS {automatic}
+ 8 8 8 0 0 0

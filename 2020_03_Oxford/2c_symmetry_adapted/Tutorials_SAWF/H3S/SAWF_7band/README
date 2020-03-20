@@ -1,0 +1,53 @@
+# symmetry-adapted Wannier functions: H3S, 7 band model 
+# (atomic-centered s orbital at H and atomic-centered s and p orbitals at S)
+
+
+
+1. Set num_wann and fill out the projection part in H3S.win.  
+
+
+
+2. Modify H3S.win to turn on symmetry-adapted mode. 
+
+    Uncomment the following two lines in H3S.win
+
+    "!site_symmetry = .true."
+    "!symmetrize_eps=  1d-9 "
+
+
+
+3. Modify H3S.pw2wan.in to turn on symmetry-adapted mode. 
+
+    Set write_dmn to .true. 
+
+
+
+4. Run wannier90 to generate a list of the required overlaps (written into the H3S.nnkp). 
+
+    wannier90.x -pp H3S
+
+
+
+5. Run pw2wannier90 to generate H3S.amn, H3S.mmn, H3S.dmn, and H3S.eig files (additionally H3S.sym file is also created). 
+
+    pw2wannier90.x < H3S.pw2wan.in > H3S.pw2wan.out 
+
+
+
+6. Run wannier90 to construct SAWFs. 
+
+    wannier90.x H3S
+
+
+
+7. Check Wannier centers and spreads (see H3S.wout). 
+
+
+
+8. Plot bands.
+
+      gnuplot 
+      load "H3S_band.gnu"
+      replot "../DFT_band.dat" w l lt -1, "H3S_band.dat" lt 1  
+
+
