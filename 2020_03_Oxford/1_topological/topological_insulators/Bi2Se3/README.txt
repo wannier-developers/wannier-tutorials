@@ -11,7 +11,7 @@
     $ evince bulkek.pdf
 
 4.  Check the topological number
-    $ gnuplot wanniercenter3D_Z2.gnu
+    $ gnuplot wanniercenter3D_Z2.gnu-tutorial
     $ evince wanniercenter3D_Z2.pdf
     $ sed -n '/# z2 number/,/Time/p' WT.out
 
