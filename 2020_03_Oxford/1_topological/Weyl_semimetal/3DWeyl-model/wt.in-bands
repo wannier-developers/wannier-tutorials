@@ -8,6 +8,7 @@ BulkBand_calc         = T
 /
 
 &SYSTEM
+NumOccupied = 1         ! NumOccupied
 SOC = 1                 ! soc
 E_FERMI = 0        ! e-fermi
 /

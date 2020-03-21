@@ -12,6 +12,19 @@ How to run
 python haldane_hr_gen.py
 
 This will generate the tight binding hamiltonian Haldane_hr.dat
+
+LATTICE
+Angstrom
+2.1377110  -1.2342080   0.0000000
+0.0000000   2.4684160   0.0000000
+0.0000000   0.0000000   10.000000
+
+ATOM_POSITIONS
+2                               ! number of atoms for projectors
+Direct                          ! Direct or Cartisen coordinate
+C 0.333333 0.666667 0.500000
+C 0.666667 0.333333 0.500000
+
 """
 # Define tight-binding parameters
 # You can find phase diagram in PRL 61,2015 (1988)

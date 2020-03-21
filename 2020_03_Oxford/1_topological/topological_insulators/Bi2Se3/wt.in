@@ -51,11 +51,11 @@ E_FERMI = 4.4195        ! e-fermi, a global shift of the energy levels
 &PARAMETERS
 Eta_Arc = 0.001     ! infinite small value, like brodening 
 E_arc = 0.0         ! energy level for contour plot of spectrum
-OmegaNum = 400      ! omega number       
+OmegaNum = 201      ! omega number       
 OmegaMin = -0.6     ! energy interval
 OmegaMax =  0.5     ! energy interval
-Nk1 = 101          ! number k points  odd number would be better
-Nk2 = 101           ! number k points  odd number would be better
+Nk1 = 61          ! number k points  odd number would be better
+Nk2 = 61           ! number k points  odd number would be better
 NP = 1              ! number of principle layers
 /
 

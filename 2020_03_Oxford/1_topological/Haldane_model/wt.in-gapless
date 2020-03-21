@@ -28,7 +28,7 @@ OmegaMin = -5.0     ! energy interval
 OmegaMax =  5.0     ! energy interval
 Nk1 = 100            ! number k points 
 Nk2 = 100            ! number k points 
-NP = 2              ! number of principle layers
+NP = 1              ! number of principle layers
 /
 
 LATTICE
@@ -40,8 +40,8 @@ Angstrom
 ATOM_POSITIONS
 2                               ! number of atoms for projectors
 Direct                          ! Direct or Cartisen coordinate
-C 0.333333 0.666667 0.500000 C
-C 0.666667 0.333333 0.500000 C
+C 0.333333 0.666667 0.500000 
+C 0.666667 0.333333 0.500000 
 
 PROJECTORS
 1 1          ! number of projectors
