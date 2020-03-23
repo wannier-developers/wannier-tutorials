@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Getting set up &mdash; AiiDA Wannier90 Tutorial (2020)  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2. A first taste of AiiDA" href="first_taste.html" />
+    <link rel="prev" title="2020 Wannier tutorial “Virtual Edition”" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> AiiDA Wannier90 Tutorial (2020)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial materials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2020, Wannier workshop Virtual Edition (aiida-core 1.1.1)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#aiida-wannier90-hands-on">AiiDA-Wannier90 hands-on</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#demo">Demo</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">1. Getting set up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_taste.html">2. A first taste of AiiDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="automated_wannierisation.html">3. Automated high-throughput wannierisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#in-depth-tutorial">In-depth tutorial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AiiDA Wannier90 Tutorial (2020)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">2020 Wannier tutorial “Virtual Edition”</a> &raquo;</li>
+        
+      <li>1. Getting set up</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/pages/2020_Oxford/sections/setup-no-cloud.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="getting-set-up">
+<h1>1. Getting set up<a class="headerlink" href="#getting-set-up" title="Permalink to this headline">¶</a></h1>
+<p>Download the correct Quantum Mobile version listed
+<a class="reference internal" href="../index.html#oxford-2020-homepage"><span class="std std-ref">in the homepage of this event</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The credentials of the Quantum Mobile VM that you can download
+from the main page of this tutorial material
+are the following: username: <code class="docutils literal notranslate"><span class="pre">max</span></code>, password: <code class="docutils literal notranslate"><span class="pre">moritz</span></code>.</p>
+</div>
+<p>You can find some troubleshooting, in case you have problems, on the
+<a class="reference external" href="https://github.com/marvel-nccr/quantum-mobile/wiki/Frequently-Asked-Questions">Quantum Mobile FAQ page</a>.</p>
+<div class="section" id="start-jupyter">
+<span id="setup-jupyter-oxford-2020"></span><h2>1.1. Start jupyter<a class="headerlink" href="#start-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>Once connected to your virtual machine, to use AiiDA open a terminal and type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>workon aiida
+</pre></div>
+</div>
+<p>This will enable the virtual environment in which AiiDA is installed,
+allowing you to use AiiDA. Now, to start a jupyter notebook (you might
+need it later in the tutorial) type in the same shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+</pre></div>
+</div>
+<p>This will run a server with a web application called <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>, which
+is used to create interactive python notebooks.
+This will also open the default browser (in the VM) and allow you to use
+jupyter.
+Keep the browser open, so you can use jupyter later when needed.</p>
+<p>Keep also the terminal open (just minimise the window).
+If you need to use the terminal, just open another one (right click on the terminal
+icon on the left bar, and choose “New terminal”).</p>
+</div>
+<div class="section" id="additional-useful-notes">
+<h2>1.2. Additional useful notes<a class="headerlink" href="#additional-useful-notes" title="Permalink to this headline">¶</a></h2>
+<p>Read through the next sections if you are interested in knowing how to download files
+into the virtual machine, how to troubleshoot typical problems, or how to get additional help.</p>
+<div class="section" id="downloading-files">
+<h3>1.2.1. Downloading files<a class="headerlink" href="#downloading-files" title="Permalink to this headline">¶</a></h3>
+<p>Throughout this tutorial, you will encounter links to download python scripts, jupyter notebooks and more.
+These files should be downloaded to the environment/working directory you use to run the tutorial.
+In particular, when running the tutorial on a linux virtual machine, copy the link address and download the files to the machine using the <code class="docutils literal notranslate"><span class="pre">wget</span></code> utility on the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget <span class="s1">&#39;&lt;LINK&gt;&#39;</span>
+</pre></div>
+</div>
+<p>where you replace <code class="docutils literal notranslate"><span class="pre">&lt;LINK&gt;</span></code> with the actual HTTPS link that you copied from the tutorial text in your browser.
+This will download that file in your current directory.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h3>1.2.2. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If you get errors <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">aiida</span></code> or
+<code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">command</span> <span class="pre">’verdi’</span> <span class="pre">found</span></code>, double check that you have loaded the
+virtual environment with <code class="docutils literal notranslate"><span class="pre">workon</span> <span class="pre">aiida</span></code> before launching <code class="docutils literal notranslate"><span class="pre">python</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ipython</span></code> or the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> notebook server.</p></li>
+</ul>
+</div>
+<div class="section" id="getting-help">
+<h3>1.2.3. Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h3>
+<p>There are a number of helpful resources available to you for getting more information about AiiDA.
+Please consider:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>consulting the extensive <a class="reference external" href="https://aiida-core.readthedocs.io/en/latest/">AiiDA documentation</a></p></li>
+<li><p>opening a new issue on the <a class="reference external" href="https://github.com/aiidateam/aiida-tutorials/issues">tutorial issue tracker</a></p></li>
+<li><p>asking your neighbor</p></li>
+<li><p>asking a tutor.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="first_taste.html" class="btn btn-neutral float-right" title="2. A first taste of AiiDA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="2020 Wannier tutorial “Virtual Edition”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (Theory and Simulation of Materials (THEOS), Switzerland. All rights reserved
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
