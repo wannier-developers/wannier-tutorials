@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. A first taste of AiiDA &mdash; AiiDA Wannier90 Tutorial (2020)  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3. Automated high-throughput wannierisation" href="automated_wannierisation.html" />
+    <link rel="prev" title="1. Getting set up" href="setup-no-cloud.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> AiiDA Wannier90 Tutorial (2020)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial materials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2020, Wannier workshop Virtual Edition (aiida-core 1.1.1)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#aiida-wannier90-hands-on">AiiDA-Wannier90 hands-on</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#demo">Demo</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="setup-no-cloud.html">1. Getting set up</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">2. A first taste of AiiDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="automated_wannierisation.html">3. Automated high-throughput wannierisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#in-depth-tutorial">In-depth tutorial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AiiDA Wannier90 Tutorial (2020)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">2020 Wannier tutorial “Virtual Edition”</a> &raquo;</li>
+        
+      <li>2. A first taste of AiiDA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/pages/2020_Oxford/sections/first_taste.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="a-first-taste-of-aiida">
+<h1>2. A first taste of AiiDA<a class="headerlink" href="#a-first-taste-of-aiida" title="Permalink to this headline">¶</a></h1>
+<p>Let’s start with a quick demo of how AiiDA can make your life easier as a computational scientist.</p>
+<p>We’ll be using the <code class="docutils literal notranslate"><span class="pre">verdi</span></code> command-line interface,
+which lets you manage your AiiDA installation, inspect the contents of your database,  control running calculations and more.</p>
+<p>As the first thing, open a terminal and type <code class="docutils literal notranslate"><span class="pre">workon</span> <span class="pre">aiida</span></code> to enter the “virtual environment” where AiiDA is installed.
+You will know that you are in the virtual environment because each new line will start with <code class="docutils literal notranslate"><span class="pre">(aiida)</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(aiida) max@qmobile:~$
+</pre></div>
+</div>
+<p>Note that you will need to retype <code class="docutils literal notranslate"><span class="pre">workon</span> <span class="pre">aiida</span></code> every time you open a new terminal.</p>
+<p>Here are some first tasks for you:</p>
+<blockquote>
+<div><ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">verdi</span></code> command supports <strong>tab-completion</strong>:
+In the terminal, type <code class="docutils literal notranslate"><span class="pre">verdi</span></code>, followed by a space and press the ‘Tab’ key twice to show a list of all the available sub commands.</p></li>
+<li><p>For help on <code class="docutils literal notranslate"><span class="pre">verdi</span></code> or any of its subcommands, simply append the <code class="docutils literal notranslate"><span class="pre">--help/-h</span></code> flag:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi -h
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is a short crash course into AiiDA, focusing on
+<a class="reference external" href="http://www.wannier.org">Wannier90</a> as the code that AiiDA will run (via the <a class="reference external" href="https://github.com/aiidateam/aiida-wannier90">aiida-wannier90</a>
+plugin).</p>
+<p>Many more codes are supported by AiiDA (see full updated list of plugins on
+the <a class="reference external" href="https://aiidateam.github.io/aiida-registry/">AiiDA plugin registry</a>).
+If you want to see a similar first-taste tutorial, but focused on <a class="reference external" href="https://www.quantum-espresso.org">Quantum ESPRESSO</a>
+instead (using the <a class="reference external" href="https://github.com/aiidateam/aiida-quantumespresso">aiida-quantumespresso</a> plugin), you can check the
+<a class="reference external" href="https://aiida-tutorials.readthedocs.io/en/latest/pages/2019_Ljubljana/sections/first_taste.html#ljubliana-2019-first-taste" title="(in AiiDA Tutorials)"><span class="xref std std-ref">“first-taste” page of the tutorial held in Ljubiana (2019)</span></a>.</p>
+</div>
+<div class="section" id="importing-a-crystal-structure-from-a-file">
+<h2>2.1. Importing a crystal structure from a file<a class="headerlink" href="#importing-a-crystal-structure-from-a-file" title="Permalink to this headline">¶</a></h2>
+<p>We will use a gallium arsenide (GaAs) primitive cell with 2 atoms in this
+first part of the tutorial.</p>
+<p>We provide the crystal structure, in <a class="reference external" href="http://www.xcrysden.org/doc/XSF.html">XSF format</a>, here:
+<a class="reference download internal" download="" href="../../../_downloads/5ae58af6361ee748ca8d17ce0f2036af/GaAs.xsf"><code class="xref download docutils literal notranslate"><span class="pre">GaAs.xsf</span></code></a>.</p>
+<p>You can download the file in a folder in the virtual machine,
+and then import it into AiiDA (via the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> library)
+using the following <code class="docutils literal notranslate"><span class="pre">verdi</span></code> command, run from a bash shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi data structure import ase GaAs.xsf
+</pre></div>
+</div>
+<p>Each piece of data in AiiDA gets a PK number (a “primary key”)
+that identifies it in your database.
+This is printed out on the screen by the <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">data</span> <span class="pre">structure</span> <span class="pre">import</span></code> command.
+Mark it down, as we are going to use it in the next commands.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the next commands, replace the string <code class="docutils literal notranslate"><span class="pre">&lt;PK&gt;</span></code> with the appropriate PK number.</p>
+</div>
+<p>Let us first inspect the node you just created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi node show &lt;PK&gt;
+</pre></div>
+</div>
+<p>You will get in output some information on the node,
+including its type (<code class="docutils literal notranslate"><span class="pre">StructureData</span></code>, the AiiDA data type for storing crystal
+structures), a label and a description (empty for now, can be changed),
+a creation time (<code class="docutils literal notranslate"><span class="pre">ctime</span></code>) and a last modification time (<code class="docutils literal notranslate"><span class="pre">mtime</span></code>),
+the PK of the node and its UUID (universally unique identifier).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>When should I use the PK and when should I use the UUID?</strong></p>
+<p>A <strong>PK</strong> is a short integer identifying the node and therefore easy to remember.
+However, the same PK number (e.g., PK=10)
+might appear in two different databases referring to two completely different
+pieces of data.</p>
+<p>A <strong>UUID</strong> is a hexadecimal string that might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d11a4829</span><span class="o">-</span><span class="mf">3e19</span><span class="o">-</span><span class="mi">4978</span><span class="o">-</span><span class="n">bfcf</span><span class="o">-</span><span class="n">c28ddeb0891e</span>
+</pre></div>
+</div>
+<p>A UUID has instead the nice feature to be globally unique: even if you export
+your data and a colleague imports it, the UUIDs will remain the same
+(while the PKs will typically be different).</p>
+<p>Therefore, use the UUID to keep a long-term reference to a node.
+Feel free to use the PK for quick, everyday use (e.g. to inspect a node).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All AiiDA commands accepting a PK can also accept a UUID. Check this by
+trying the command above, this time with <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">&lt;UUID&gt;</span></code>.</p>
+<p>Note the following:</p>
+<ul>
+<li><p>AiiDA does not require the full UUID, but just the first part of it,
+as long as only one node starts with the string you provide. E.g., in the example above,
+you could also say <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">d11a4829-3e19</span></code>. Most probably, instead,
+<code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">d1</span></code> will return an error, since you might
+have more than one node starting with the string <code class="docutils literal notranslate"><span class="pre">d1</span></code>.</p></li>
+<li><p>By default, if you pass a valid integer, AiiDA will assume it is a PK;
+if at least one of the characters is not a digit, then AiiDA will assume
+it is (the first part of) a UUID.</p></li>
+<li><p>How to solve the issue, then, when the first part of the UUID is composed only by
+digits (e.g. in <code class="docutils literal notranslate"><span class="pre">2495301c-dd00-42d6-92e4-1a8c171bbb4a</span></code>)? As described above, using
+<code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">24953</span></code> would look for a node with <code class="docutils literal notranslate"><span class="pre">PK=24953</span></code>. As a solution,
+just add a dash, e.g. <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">24953-</span></code> so that AiiDA will consider
+this as the beginning of the UUID.</p>
+<p>Note that you can put the dash in any part of the string, and you don’t need
+to respect the typical UUID pattern with 8-4-4-4-12 characters per section:
+AiiDA will anyway first strip all dashes, and then put them back in the right
+place, so e.g. <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">24-95-3</span></code> will give you the same result as
+<code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">24953-</span></code>.</p>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Try to use again <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span></code> on the <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> node above,
+just with the first part of the UUID (that you got from the first call to
+<code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span></code> above).</p></li>
+</ul>
+</div>
+<div class="section" id="running-a-job-calculation">
+<h2>2.2. Running a job calculation<a class="headerlink" href="#running-a-job-calculation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction-and-importing-existing-simulations">
+<h3>2.2.1. Introduction and importing existing simulations<a class="headerlink" href="#introduction-and-importing-existing-simulations" title="Permalink to this headline">¶</a></h3>
+<p>In AiiDA, one very important type of calculation is called “calculation job” (whose logic is
+implemented in a <code class="docutils literal notranslate"><span class="pre">CalcJob</span></code> python class, and that is stored upon execution using a <code class="docutils literal notranslate"><span class="pre">CalcJobNode</span></code> python class).
+These calculations represent the execution
+of an external code (e.g. Quantum ESPRESSO, Wannier90, …), very often on a different computer
+than the one where AiiDA is installed.
+The execution is automatically tracked by AiiDA (input creation, submission, waiting for the job scheduler,
+file retrieval and parsing) and its inputs and outputs are connected to the <code class="docutils literal notranslate"><span class="pre">CalcJobNode</span></code> (representing
+the execution) via INPUT and CREATE links.</p>
+<p>In the following, we want to launch a <code class="docutils literal notranslate"><span class="pre">CalcJob</span></code> running a Wannier90 calculation.
+Typically, before running a Wannier90 calculation, you need to obtain the <code class="docutils literal notranslate"><span class="pre">.amn</span></code>, <code class="docutils literal notranslate"><span class="pre">.mmn</span></code>, … files
+from the interface to a first-principles code. In order to keep this tutorial focused on Wannier90, we have
+already run that part with AiiDA (using Quantum ESPRESSO) and we will just import it into your database.</p>
+<p>To achieve so, download this AiiDA export file:
+<a class="reference download internal" download="" href="../../../_downloads/3d11deac23f4c2549c41c600ca7babdf/example-gaas-wannier.aiida"><code class="xref download docutils literal notranslate"><span class="pre">example-gaas-wannier.aiida</span></code></a>
+and, once you have downloaded it in the current folder, run the following command in your bash shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi import example-gaas-wannier.aiida
+</pre></div>
+</div>
+<p>This will import, in particular, the node with UUID <code class="docutils literal notranslate"><span class="pre">71155a0b-6cb9-4712-a043-dc4798ccfaaf</span></code>,
+that contains the <code class="docutils literal notranslate"><span class="pre">.amn</span></code>, <code class="docutils literal notranslate"><span class="pre">.mmn</span></code>, … files created by the <code class="docutils literal notranslate"><span class="pre">pw2wannier90.x</span></code> code of Quantum ESPRESSO.
+Its provenance looks like the following figure (with some output nodes of the calculations not shown for clarity):</p>
+<div class="figure align-default" id="id1">
+<span id="fig-oxford2020-folderdata-provenance"></span><a class="reference internal image-reference" href="../../../_images/folderdata_provenance.png"><img alt="../../../_images/folderdata_provenance.png" src="../../../_images/folderdata_provenance.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Provenance graph for the <code class="docutils literal notranslate"><span class="pre">FolderData</span></code> node (<code class="docutils literal notranslate"><span class="pre">71155a0b</span></code>) that we have already run. At the top, we see the execution
+of a <code class="docutils literal notranslate"><span class="pre">get_primitive()</span></code> calc function (described later in <a class="reference internal" href="#oxford-2020-appendix-get-primitive"><span class="std std-ref">the appendix</span></a>)
+to obtain a primitive cell from a conventional cell.
+The darker red rectangles represent the various calc jobs that we have run
+for you, in particular:</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<ul class="simple">
+<li><p>the Quantum ESPRESSO SCF step (UUID <code class="docutils literal notranslate"><span class="pre">dcd4c286</span></code>)</p></li>
+<li><p>the Quantum ESPRESSO NSCF step (UUID <code class="docutils literal notranslate"><span class="pre">be52abbf</span></code>)</p></li>
+<li><p>the Wannier90 preprocess (<code class="docutils literal notranslate"><span class="pre">-pp</span></code>) step (UUID <code class="docutils literal notranslate"><span class="pre">a95261e2</span></code>)</p></li>
+<li><p>the Quantum ESPRESSO pw2wannier90 step (UUID <code class="docutils literal notranslate"><span class="pre">d34d62f9</span></code>).</p></li>
+</ul>
+</div>
+</div>
+<p><strong>Exercise</strong>: To check that the import worked correctly, use <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span></code> on the UUID of the <code class="docutils literal notranslate"><span class="pre">FolderData</span></code>
+mentioned above to check that you indeed have the node in your database.</p>
+<p><strong>Exercise</strong>: <code class="docutils literal notranslate"><span class="pre">FolderData</span></code> is a type of node that stores an arbitrary set of files and folders in AiiDA.
+Check the list of files included in it with the command <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">repo</span> <span class="pre">ls</span> <span class="pre">71155a0b</span></code>, and check the content of
+a given file (e.g. the <code class="docutils literal notranslate"><span class="pre">aiida.mmn</span></code> file) with <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">repo</span> <span class="pre">cat</span> <span class="pre">71155a0b</span> <span class="pre">aiida.mmn</span></code>.</p>
+<p><strong>Exercise</strong>: In the figure above, verify that all calculations are connected between them via provenance links (through
+some data node). Try to understand how, e.g., the NSCF calculation “restarts” from the SCF via a <code class="docutils literal notranslate"><span class="pre">RemoteData</span></code> node
+(that represents a reference to the folder in the computational cluster where the SCF calculation was run), or how the
+pw2wannier90 step uses as input both the <code class="docutils literal notranslate"><span class="pre">RemoteData</span></code> node of the NSCF and the <code class="docutils literal notranslate"><span class="pre">.nnkp</span></code> file generated by <code class="docutils literal notranslate"><span class="pre">wannier90.x</span> <span class="pre">-pp</span></code>.</p>
+</div>
+<div class="section" id="running-wannier90-with-aiida">
+<h3>2.2.2. Running Wannier90 with AiiDA<a class="headerlink" href="#running-wannier90-with-aiida" title="Permalink to this headline">¶</a></h3>
+<p>The following python script sets up all inputs to run the Wannier90 code. We will discuss relevant parts below; we will
+first launch it so that we can analyze its output while it runs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env runaiida</span>
+<span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="k">import</span> <span class="n">submit</span>
+<span class="kn">from</span> <span class="nn">aiida.orm</span> <span class="k">import</span> <span class="n">load_node</span><span class="p">,</span> <span class="n">Code</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="n">Code</span><span class="o">.</span><span class="n">get_from_string</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># REPLACE &lt;CODE LABEL&gt;</span>
+
+<span class="c1"># Fill in here the PK of the *primitive* structure that you obtained</span>
+<span class="c1"># in the tutorial. If you want to reuse the crystal structure that</span>
+<span class="c1"># was already imported, you can use instead the following UUID: &#39;8c108d56-aca6-43f6-baa6-94f7d1d9887d&#39;</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">load_node</span><span class="p">(</span><span class="o">&lt;</span><span class="n">PK</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="c1"># Here, we are reusing the same k-points used in the NSCF step.</span>
+<span class="c1"># Exercise: load this node in the `verdi shell`, and then use</span>
+<span class="c1"># `kpoints.get_kpoints()` to check the full list of kpoints.</span>
+<span class="n">kpoints</span> <span class="o">=</span> <span class="n">load_node</span><span class="p">(</span><span class="s1">&#39;d4d4e086-af7a-46c7-b7a0-9c5c2c9dfc7b&#39;</span><span class="p">)</span>
+
+<span class="c1">## Main Wannier run</span>
+<span class="n">do_preprocess</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1">## This is the node that we imported, discussed in the tutorial</span>
+<span class="n">parent_folder</span> <span class="o">=</span> <span class="n">load_node</span><span class="p">(</span><span class="s1">&#39;71155a0b-6cb9-4712-a043-dc4798ccfaaf&#39;</span><span class="p">)</span>
+
+<span class="c1">## Note: if you wanted to run a pre-process step (`Wannier90.x -pp`),</span>
+<span class="c1">## than you would replace the two lines above with the following one:</span>
+<span class="c1">#do_preprocess = True</span>
+
+
+
+<span class="n">parameters</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;bands_plot&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;num_iter&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+        <span class="s1">&#39;guiding_centres&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;num_wann&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;mp_grid&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+        <span class="s1">&#39;exclude_bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">kpoint_path</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;point_coords&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;GAMMA&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+            <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;GAMMA&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GAMMA&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">projections</span> <span class="o">=</span> <span class="n">List</span><span class="p">()</span>
+<span class="n">projections</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;As:s&#39;</span><span class="p">,</span><span class="s1">&#39;As:p&#39;</span><span class="p">])</span>
+
+<span class="c1"># Settings node, with additional configuration</span>
+<span class="n">settings_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">if</span> <span class="n">do_preprocess</span><span class="p">:</span>
+    <span class="n">settings_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s1">&#39;postproc_setup&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="p">)</span>  
+
+<span class="c1"># Prepare the builder to launch the calculation</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">get_builder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">max_wallclock_seconds</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>  <span class="c1"># 30 min</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resources</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;num_machines&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="n">builder</span><span class="o">.</span><span class="n">structure</span> <span class="o">=</span> <span class="n">structure</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">projections</span> <span class="o">=</span> <span class="n">projections</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">kpoints</span> <span class="o">=</span> <span class="n">kpoints</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">kpoint_path</span> <span class="o">=</span> <span class="n">kpoint_path</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">do_preprocess</span><span class="p">:</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">local_input_folder</span> <span class="o">=</span> <span class="n">parent_folder</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="nb">dict</span><span class="o">=</span><span class="n">settings_dict</span><span class="p">)</span>
+
+<span class="c1"># Run the calculation and get both the results and the node</span>
+<span class="n">calcjobnode</span> <span class="o">=</span> <span class="n">submit</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CalcJobNode: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calcjobnode</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use `verdi process list` or `verdi process show </span><span class="si">{}</span><span class="s2">` to check the progress&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calcjobnode</span><span class="o">.</span><span class="n">pk</span><span class="p">))</span>
+
+</pre></div>
+</div>
+<p>Download the <a class="reference download internal" download="" href="../../../_downloads/f061ae1c15c29f058cc28e52d6c50cdd/demo_wannier_calcjob.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_wannier_calcjob.py</span></code></a> script to your working directory.
+It contains a few placeholders for you to fill in:</p>
+<ol class="arabic simple">
+<li><p>the VM already has a number of codes preconfigured. Use <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">code</span> <span class="pre">list</span></code> to find the label for the Wannier90
+code and use it in the script. Note: <em>do not use the imported code</em>, as the computer on which it runs will not
+be configured by default.</p></li>
+<li><p>replace the PK of the structure with the one you obtained earlier (<em>important</em>: use the PK of the <em>primitive</em> structure).</p></li>
+</ol>
+<p>Then submit the calculation using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi run demo_wannier_calcjob.py
+</pre></div>
+</div>
+<p>From this point onwards, the AiiDA daemon will take care of your calculation: creating the necessary input files, running the calculation, and parsing its results.</p>
+<p>In order to be able to do this, the AiiDA daemon must be running: to check this, you can run the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi daemon status
+</pre></div>
+</div>
+<p>and, if the daemon is not running, you can start it with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi daemon start
+</pre></div>
+</div>
+<p>It should take less than one minute to complete.</p>
+</div>
+</div>
+<div class="section" id="analyzing-the-outputs-of-a-calculation">
+<h2>2.3. Analyzing the outputs of a calculation<a class="headerlink" href="#analyzing-the-outputs-of-a-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s have a look at how your calculation is doing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi process list  <span class="c1"># shows only running processes</span>
+verdi process list --all  <span class="c1"># shows all processes</span>
+</pre></div>
+</div>
+<p>Again, your calculation will get a PK, which you can use to get more information on it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi process show &lt;PK&gt;
+</pre></div>
+</div>
+<p>As you can see, AiiDA has tracked all the inputs provided to the calculation, allowing you (or anyone else) to reproduce it later on.
+AiiDA’s record of a calculation is best displayed in the form of a provenance graph:</p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/demo_wannier_calc.png"><img alt="../../../_images/demo_wannier_calc.png" src="../../../_images/demo_wannier_calc.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Provenance graph for a single Wannier90 calculation.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>You can generate such a provenance graph for any calculation or data in AiiDA by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi node graph generate &lt;PK&gt;
+</pre></div>
+</div>
+<p>Try to reproduce the figure using the PK of your calculation (note that in our figure, we have used the
+<code class="docutils literal notranslate"><span class="pre">--ancestor-depth=1</span></code> option of <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">graph</span> <span class="pre">generate</span></code> to only show direct inputs; if you don’t, you will see
+also the full provenance of the data, similar to the previous figure shown earlier).</p>
+<p>You might wonder what happened under the hood, e.g. where to find the actual input and output files of the calculation.
+You will learn more about this in some of the advanced tutorials on AiiDA – for now, here are a few useful commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi calcjob inputcat &lt;PK&gt;  <span class="c1"># shows the input file of the calculation</span>
+verdi calcjob outputcat &lt;PK&gt;  <span class="c1"># shows the output file of the calculation</span>
+verdi calcjob res &lt;PK&gt;  <span class="c1"># shows the parsed output</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Exercise</strong>: Here are a few questions you can now answer using these commands (try to check both the raw output and the parsed output)</dt><dd><ul class="simple">
+<li><p>What are the values of the various components of the spread <img class="math" src="../../../_images/math/c1386d4d0a69a99fb29e0aa8ccce466d0a2b3d33.svg" alt="\Omega_I"/>, <img class="math" src="../../../_images/math/496445bca360538ffd27f8d19845f114f1a1ff91.svg" alt="\Omega_D"/>, <img class="math" src="../../../_images/math/0bb155fa5c16e0b0a370daa11e1d65049c1f42de.svg" alt="\Omega_{OD}"/>?</p></li>
+<li><p>How many Wannier functions have been computed?</p></li>
+<li><p>Was there any warning?</p></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="understanding-the-launcher-script">
+<h3>2.3.1. Understanding the launcher script<a class="headerlink" href="#understanding-the-launcher-script" title="Permalink to this headline">¶</a></h3>
+<p>Above, we have just provided you a script that submits a calculation.
+Let us now check in detail some relevant sections, and how the input information
+got converted into the Wannier90 raw input file.</p>
+<div class="section" id="choosing-a-structure">
+<h4>2.3.1.1. Choosing a structure<a class="headerlink" href="#choosing-a-structure" title="Permalink to this headline">¶</a></h4>
+<p>In this simple example, we load a structure already stored in the AiiDA database
+(it is the one we imported from a file earlier on).
+We do this using the <code class="docutils literal notranslate"><span class="pre">load_node</span></code> command (that accepts
+either an integer PK or a string UUID).</p>
+</div>
+<div class="section" id="choosing-the-k-points">
+<h4>2.3.1.2. Choosing the k-points<a class="headerlink" href="#choosing-the-k-points" title="Permalink to this headline">¶</a></h4>
+<p>Also for <code class="docutils literal notranslate"><span class="pre">kpoints</span></code>, we are loading these from file. The reason is that we
+already executed the Quantum ESPRESSO NSCF run, and we need to be sure that the order
+of the k-points is the same (exercise: check in <a class="reference internal" href="#fig-oxford2020-folderdata-provenance"><span class="std std-numref">Fig. 2.1</span></a> that the
+<code class="docutils literal notranslate"><span class="pre">KpointsData</span></code> node that we are using is indeed the input <code class="docutils literal notranslate"><span class="pre">KpointsData</span></code>
+of the NSCF calculation). Otherwise, one can create an AiiDA <code class="docutils literal notranslate"><span class="pre">KpointsData</span></code>
+and use the <code class="docutils literal notranslate"><span class="pre">set_kpoints</span></code> method to pass a <img class="math" src="../../../_images/math/f8890411fb3d13a4604dd84752771046af1e80c7.svg" alt="N\times 3"/> numpy array,
+where <img class="math" src="../../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.svg" alt="N"/> is the number of k-points.</p>
+</div>
+<div class="section" id="setting-up-input-parameters">
+<h4>2.3.1.3. Setting up input parameters<a class="headerlink" href="#setting-up-input-parameters" title="Permalink to this headline">¶</a></h4>
+<p>One very important input node is the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> node, containing the input
+flags for the code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+   <span class="nb">dict</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">&#39;bands_plot&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+      <span class="o">...</span>
+   <span class="p">})</span>
+</pre></div>
+</div>
+<p>In particular, <code class="docutils literal notranslate"><span class="pre">parameters</span></code> is a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> node, i.e.,
+an AiiDA node containing a dictionary of key-value pairs (stored in the AiiDA
+database and that can be easily queried - we will not see how to run queries in this
+tutorial, but you can check the <a class="reference external" href="https://aiida.readthedocs.io/projects/aiida-core/en/v1.1.1/working_with_aiida/index.html#querying-data">AiiDA documentation on querying</a> or the <a class="reference external" href="https://aiida-tutorials.readthedocs.io/en/latest/pages/2019_MARVEL_Psik_MaX/sections/querybuilder.html#querybuilder" title="(in AiiDA Tutorials)"><span class="xref std std-ref">full tutorial</span></a>
+for more information on this).</p>
+<p><strong>Exercise</strong>: Use <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">calcjob</span> <span class="pre">inputcat</span> <span class="pre">&lt;PK&gt;</span></code> (using the <code class="docutils literal notranslate"><span class="pre">PK</span></code> of the calc job)
+and check how the information in the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> has been converted
+into the Wannier90 input file.</p>
+</div>
+<div class="section" id="setting-up-the-projections">
+<h4>2.3.1.4. Setting up the projections<a class="headerlink" href="#setting-up-the-projections" title="Permalink to this headline">¶</a></h4>
+<p>In <code class="docutils literal notranslate"><span class="pre">aiida-wannier90</span></code>, there are two ways to set up <code class="docutils literal notranslate"><span class="pre">projections</span></code>.
+Here, we are using the simplest approach (i.e., a list of strings, that are simply
+inserted in the corresponding section of the raw input file). Similarly to a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> node,
+these strings are wrapped in a <code class="docutils literal notranslate"><span class="pre">List</span></code> AiiDA node, so that it gets stored and are queryable.</p>
+<p>We will see a second (more easily queryable) way later on during this tutorial.</p>
+</div>
+<div class="section" id="setting-up-an-optional-list-of-k-points-for-the-band-plot">
+<h4>2.3.1.5. Setting up an (optional) list of k-points for the band plot<a class="headerlink" href="#setting-up-an-optional-list-of-k-points-for-the-band-plot" title="Permalink to this headline">¶</a></h4>
+<p>The path to compute an (interpolated) band structure needs to be specified
+as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> node, contianing two keys: <code class="docutils literal notranslate"><span class="pre">point_coords</span></code> (a dictionary
+with high-symmetry point labels and coordinates), and a <code class="docutils literal notranslate"><span class="pre">path</span></code>
+(a list of pairs of labels, to indicate band-path segments):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kpoint_path</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+   <span class="nb">dict</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">&#39;point_coords&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;GAMMA&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+            <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;GAMMA&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GAMMA&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)]</span>
+   <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Exercise</strong>: Check how this has been converted into the raw input file.</p>
+</div>
+<div class="section" id="setting-up-the-optional-calculation-settings">
+<h4>2.3.1.6. Setting up the (optional) calculation settings<a class="headerlink" href="#setting-up-the-optional-calculation-settings" title="Permalink to this headline">¶</a></h4>
+<p>While often you don’t need to specify additional control parameters, there
+are cases in which you want to specify additional options to tune
+the way AiiDA will run the code.</p>
+<p>You can find the full documentation of accepted keys for the <code class="docutils literal notranslate"><span class="pre">settings</span></code>
+in the <a class="reference external" href="https://aiida-wannier90.readthedocs.io/en/v2.0.0/inputexample.html#settings">aiida-wannier90 documentation</a> (e.g. to specify random projections,
+or to retrieve/not retrieve specific files at the end of the run).</p>
+<p>One important option that you will use very often is the flag <code class="docutils literal notranslate"><span class="pre">postproc_setup</span></code>:
+if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, it will run a Wannier90 post-processing run (i.e., <code class="docutils literal notranslate"><span class="pre">wannier90.x</span> <span class="pre">-pp</span></code>).</p>
+<p>In our case, <code class="docutils literal notranslate"><span class="pre">do_preprocess</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> so this is not set, but you would need
+to run it in a full calculation including a DFT code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Settings node, with additional configuration</span>
+<span class="n">settings_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">if</span> <span class="n">do_preprocess</span><span class="p">:</span>
+   <span class="n">settings_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+      <span class="p">{</span><span class="s1">&#39;postproc_setup&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-up-all-inputs-in-a-builder">
+<h4>2.3.1.7. Setting up all inputs in a builder<a class="headerlink" href="#setting-up-all-inputs-in-a-builder" title="Permalink to this headline">¶</a></h4>
+<p>Once you have created the nodes or loaded them from
+the database, you need to prepare a calculation, connect all inputs and then run
+(or submit it).</p>
+<p>This is done creating a new calculation <code class="docutils literal notranslate"><span class="pre">builder</span></code> from a code: <code class="docutils literal notranslate"><span class="pre">builder</span> <span class="pre">=</span> <span class="pre">code.get_builder()</span></code>.
+Then, all inputs are attached to the builder as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span><span class="o">.</span><span class="n">structure</span> <span class="o">=</span> <span class="n">structure</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">projections</span> <span class="o">=</span> <span class="n">projections</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Finally, you can:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> the calculation (this stops the interpreter at that line, until the simulation
+is done, and then the execution of the python script continues):</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="kn">import</span> <span class="n">run</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>At the end, you will get a dictionary of <code class="docutils literal notranslate"><span class="pre">results</span></code>, one for every output node.</p>
+</li>
+<li><p>If you want to run the calculation, but also get a reference to the
+<code class="docutils literal notranslate"><span class="pre">CalcJobNode</span></code> that represents the execution, you can use instead:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="kn">import</span> <span class="n">run_get_node</span>
+<span class="n">results</span><span class="p">,</span> <span class="n">calcjobnode</span> <span class="o">=</span> <span class="n">run_get_node</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>If you want to submit to the daemon (what is done in the example above),
+you can use instead:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="kn">import</span> <span class="n">submit</span>
+<span class="n">calcjobnode</span> <span class="o">=</span> <span class="n">submit</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In this case, you just get immediately a reference to the <code class="docutils literal notranslate"><span class="pre">CalcJobNode</span></code>
+(not yet completed) and you can continue with the execution of the python script.
+This is useful e.g. if you want to submit many independent calculations at once
+in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, and then let them run in parallel.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="from-calculations-to-workflows">
+<h2>2.4. From calculations to workflows<a class="headerlink" href="#from-calculations-to-workflows" title="Permalink to this headline">¶</a></h2>
+<p>AiiDA can help you run individual calculations but it is really designed to help you run workflows that involve several calculations, while automatically keeping track of the provenance for full reproducibility.</p>
+<p>As the final step, we are going to launch the <code class="docutils literal notranslate"><span class="pre">MinimalW90WorkChain</span></code> workflow, a demo workflow
+shipped with the <code class="docutils literal notranslate"><span class="pre">aiida-wannier90</span></code> plugin, that also takes care of running the preliminary DFT
+steps using Quantum ESPRESSO.</p>
+<p>Here is a submission script that we are going to use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="k">import</span> <span class="n">run</span>
+<span class="kn">from</span> <span class="nn">aiida.orm</span> <span class="k">import</span> <span class="n">Str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">KpointsData</span><span class="p">,</span> <span class="n">StructureData</span><span class="p">,</span> <span class="n">load_code</span>
+<span class="kn">from</span> <span class="nn">aiida.plugins</span> <span class="k">import</span> <span class="n">WorkflowFactory</span>
+
+<span class="kn">from</span> <span class="nn">aiida_wannier90.orbitals</span> <span class="k">import</span> <span class="n">generate_projections</span>
+
+
+<span class="n">pw_code</span><span class="o">=</span><span class="n">load_code</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Replace with the QE pw.x code label</span>
+<span class="n">wannier_code</span><span class="o">=</span><span class="n">load_code</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Replace with the Wannier90 wannier.x code label</span>
+<span class="n">pw2wannier90_code</span><span class="o">=</span><span class="n">load_code</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># Replace with the QE pw2wannier90.x code label</span>
+<span class="n">pseudo_family_name</span><span class="o">=</span><span class="s2">&quot;&lt;UPF FAMILY NAME&gt;&quot;</span> <span class="c1"># Replace with the name of the pseudopotential family for SSSP efficiency </span>
+
+
+<span class="c1"># GaAs structure</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">5.68018817933178</span>  <span class="c1"># angstrom</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">StructureData</span><span class="p">(</span>
+    <span class="n">cell</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<span class="p">)</span>
+<span class="n">structure</span><span class="o">.</span><span class="n">append_atom</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Ga&#39;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">))</span>
+<span class="n">structure</span><span class="o">.</span><span class="n">append_atom</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;As&#39;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">))</span>
+
+<span class="c1"># 4x4x4 k-points mesh for the SCF</span>
+<span class="n">kpoints_scf</span> <span class="o">=</span> <span class="n">KpointsData</span><span class="p">()</span>
+<span class="n">kpoints_scf</span><span class="o">.</span><span class="n">set_kpoints_mesh</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="c1"># 10x10x10 k-points mesh for the NSCF/Wannier90 calculations</span>
+<span class="n">kpoints_nscf</span> <span class="o">=</span> <span class="n">KpointsData</span><span class="p">()</span>
+<span class="n">kpoints_nscf</span><span class="o">.</span><span class="n">set_kpoints_mesh</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># k-points path for the band structure</span>
+<span class="n">kpoint_path</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="nb">dict</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;point_coords&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;GAMMA&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.375</span><span class="p">,</span> <span class="mf">0.375</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">],</span>
+        <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+        <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.625</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">],</span>
+        <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">],</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;GAMMA&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;GAMMA&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;GAMMA&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)]</span>
+<span class="p">})</span>
+
+<span class="c1"># sp^3 projections, centered on As</span>
+<span class="n">projections</span> <span class="o">=</span> <span class="n">generate_projections</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;position_cart&#39;</span> <span class="p">:(</span><span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">),</span>
+            <span class="s1">&#39;ang_mtm_l_list&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;spin&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">structure</span><span class="o">=</span><span class="n">structure</span>
+<span class="p">)</span>
+
+<span class="c1"># Load the workflow</span>
+<span class="n">MinimalW90WorkChain</span> <span class="o">=</span> <span class="n">WorkflowFactory</span><span class="p">(</span><span class="s1">&#39;wannier90.minimal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Run the workflow</span>
+<span class="n">run</span><span class="p">(</span>
+    <span class="n">MinimalW90WorkChain</span><span class="p">,</span>
+    <span class="n">pw_code</span><span class="o">=</span><span class="n">pw_code</span><span class="p">,</span>
+    <span class="n">wannier_code</span><span class="o">=</span><span class="n">wannier_code</span><span class="p">,</span>
+    <span class="n">pw2wannier90_code</span><span class="o">=</span><span class="n">pw2wannier90_code</span><span class="p">,</span>
+    <span class="n">pseudo_family</span><span class="o">=</span><span class="n">Str</span><span class="p">(</span><span class="n">pseudo_family_name</span><span class="p">),</span>
+    <span class="n">structure</span><span class="o">=</span><span class="n">structure</span><span class="p">,</span>
+    <span class="n">kpoints_scf</span><span class="o">=</span><span class="n">kpoints_scf</span><span class="p">,</span>
+    <span class="n">kpoints_nscf</span><span class="o">=</span><span class="n">kpoints_nscf</span><span class="p">,</span>
+    <span class="n">kpoint_path</span><span class="o">=</span><span class="n">kpoint_path</span><span class="p">,</span>
+    <span class="n">projections</span><span class="o">=</span><span class="n">projections</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Download the <a class="reference download internal" download="" href="../../../_downloads/329a9a9bb26d0f26efa71fbb085d5066/demo_minimal_w90_workchain.py"><code class="xref download docutils literal notranslate"><span class="pre">demo_bands.py</span></code></a> snippet.
+You will need to edit the first lines, specifying the name of the AiiDA codes for Quantum ESPRESSO executables
+<code class="docutils literal notranslate"><span class="pre">pw.x</span></code> and <code class="docutils literal notranslate"><span class="pre">pw2wannier90.x</span></code>, and for the Wannier90 code (that you can discover
+as usual with <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">code</span> <span class="pre">list</span></code>).</p>
+<p>Moreover, you need to specify which pseudopotentials you want to use. AiiDA comes with tools to manage
+pseudopotentials in UPF format (the format used by Quantum ESPRESSO and a few more codes), and to group them
+in “pseudopotential families”. You can list all existing ones with <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">data</span> <span class="pre">upf</span> <span class="pre">listfamilies</span></code>. We want
+to use the <a class="reference external" href="https://www.materialscloud.org/discover/sssp/table/efficiency">SSSP library version 1.1</a>.
+Find the family you want to use and specify its name in the appropriate variable.</p>
+<p><strong>Exercise</strong>: Inspect the rest of the script to see how we are specifying inputs.
+In particular:</p>
+<ul class="simple">
+<li><p>Note how you can define a crystal structure directly in AiiDA, without using any external
+library, if you know the cell vectors and the atoms coordinates.</p></li>
+<li><p>Note how you can define a <code class="docutils literal notranslate"><span class="pre">KpointsData</span></code> node (<code class="docutils literal notranslate"><span class="pre">kpoints_scf</span></code>) that does not
+include an explicit list of k-points, but rather represents a regular grid (<img class="math" src="../../../_images/math/898695b5b2fffc85445ffd1c9020078fca823a8f.svg" alt="4\times4\times4"/>
+in this example, and similarly <img class="math" src="../../../_images/math/1d67fb7cfb388959fa66a5da69abde81abdc7286.svg" alt="10\times10\times10"/> for <code class="docutils literal notranslate"><span class="pre">kpoints_nscf</span></code>).
+The workflow, internally, knows that for the NSCF step one needs to unfold this k-points
+grid in an explicit grid of all k-points.</p></li>
+<li><p>Note a different way to specify the projections, using a more declarative format as a list of
+projection declarations (that gets internally converted in a queryable <code class="docutils literal notranslate"><span class="pre">OrbitalData</span></code>,
+rather than just a list of strings).
+The documentation of the <code class="docutils literal notranslate"><span class="pre">get_projections</span></code> function and its parameters
+can be found <a class="reference external" href="https://aiida-wannier90.readthedocs.io/en/v2.0.0/reference.html#aiida_wannier90.orbitals.generate_projections">here</a>.</p></li>
+</ul>
+<p>Once you have saved your changes, you can run the workflow with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi run demo_minimal_w90_workchain.py
+</pre></div>
+</div>
+<p>This workflow will:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Run a SCF simulation on GaAs</p></li>
+<li><p>Run an NSCF calculation on a denser grid (with an explicit list of k-points)</p></li>
+<li><p>Run a post-process Wannier90 <code class="docutils literal notranslate"><span class="pre">-pp</span></code> calculation to get the <code class="docutils literal notranslate"><span class="pre">.nnkp</span></code> file</p></li>
+<li><p>Run the interface code <code class="docutils literal notranslate"><span class="pre">pw2wannier90.x</span></code></p></li>
+<li><p>Run the Wannierisation step, returning the interpolated bands.</p></li>
+</ol>
+</div></blockquote>
+<p>The workflow should take ~5 minutes on a typical laptop.
+You may notice that <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">process</span> <span class="pre">list</span></code> now shows more than one entry.
+While you wait for the workflow to complete, let’s start exploring its provenance.</p>
+<p>The full provenance graph obtained from <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">graph</span> <span class="pre">generate</span></code> will already be rather complex (you can try!),
+so let’s try browsing the provenance interactively instead.</p>
+<p>In a new verdi shell, start the AiiDA REST API:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi restapi
+</pre></div>
+</div>
+<p>and open the <a href="https://www.materialscloud.org/explore/ownrestapi?base_url=http://127.0.0.1:5000/api/v4" target="_blank">Materials Cloud provenance browser</a> (from the browser inside the virtual machine).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The provenance browser is a Javascript application provided by Materials Cloud that connects to your AiiDA REST API.
+<em>Your data never leave your computer</em>.</p>
+</div>
+<p>Browse your AiiDA database.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Start by finding your workflow (in the left menu, filter the nodes by selecting
+<code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">-&gt;</span> <span class="pre">Workflow</span> <span class="pre">-&gt;</span> <span class="pre">WorkChain</span></code>.
+WorkChains are a specific type of workflows in AiiDA that allow to define multiple steps and can be paused
+and restarted between steps).</p></li>
+<li><p>Inspect the inputs and returned outputs of the workflow in the provenance browser (outputs will appear once
+the calculations are done). Moreover, you can inspect the calculations that the workflow launched, and check both
+their input and output nodes (via the provenance browser), as well as the raw inputs and outputs of the calculation
+(in the page of a specific <code class="docutils literal notranslate"><span class="pre">CalcJobNode</span></code>).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When perfoming calculations for a research project, at the end upon publication you can export your provenance graph using <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">export</span> <span class="pre">create</span></code> and upload it to the <a class="reference external" href="https://archive.materialscloud.org/">Materials Cloud Archive</a>, enabling your peers to explore the provenance of your calculations.</p>
+</div>
+<p>Once the workchain is finished, use <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">process</span> <span class="pre">show</span> <span class="pre">&lt;PK&gt;</span></code> to inspect the <code class="docutils literal notranslate"><span class="pre">MinimalW90WorkChain</span></code> and find the PK of its <code class="docutils literal notranslate"><span class="pre">interpolated_bands</span></code> output.
+Use this to produce an <code class="docutils literal notranslate"><span class="pre">xmgrace</span></code> output of the interpolated band structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi data bands <span class="nb">export</span> --format agr --output wannier_bands.agr &lt;PK&gt;
+</pre></div>
+</div>
+<p>that you can then visualise using <code class="docutils literal notranslate"><span class="pre">xmgrace</span> <span class="pre">wannier_bands.agr</span></code>.</p>
+</div>
+<div class="section" id="how-to-continue-from-here">
+<h2>2.5. How to continue from here<a class="headerlink" href="#how-to-continue-from-here" title="Permalink to this headline">¶</a></h2>
+<p>The following appendix to this chapter discusses a bit more in detail
+how to import and export crystal structures from an AiiDA database, and which
+tools exist to obtain the primitive structure from a conventional structure,
+or more generally from a supercell.</p>
+<p>Importantly, the conversion of a crystal structure (conventional cell)
+to a primitive cell means the creation of a Data node from another Data node
+using a python function. The appendix shows how easy it is with AiiDA to
+wrap python functions into AiiDA’s <code class="docutils literal notranslate"><span class="pre">calcfunctions</span></code> that automatically
+preserve the provenance of the data transformation in the AiiDA graph.</p>
+<p>If you do not have time right now, you can
+<a class="reference internal" href="automated_wannierisation.html#oxford-2020-autowannier"><span class="std std-ref">jump directly to the next tutorial section</span></a>,
+where we will see how to use fully automated AiiDA workflows that can obtain
+Wannier functions of a material with minimal input, without the need
+to specifying input parameters apart from the crystal structure and the
+code to run (and where even the choice of initial projections is automated).</p>
+</div>
+<div class="section" id="appendix-get-the-primitive-structure-while-preserving-the-provenance">
+<span id="oxford-2020-appendix-get-primitive"></span><h2>2.6. Appendix: Get the primitive structure while preserving the provenance<a class="headerlink" href="#appendix-get-the-primitive-structure-while-preserving-the-provenance" title="Permalink to this headline">¶</a></h2>
+<p>Let us begin by downloading a gallium arsenide (GaAs) structure from the
+<a class="reference external" href="http://crystallography.net/cod/">Crystallography Open Database</a> and importing
+it into AiiDA.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can view the structure <a class="reference external" href="http://crystallography.net/cod/9008845.html">online</a>.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://crystallography.net/cod/9008845.cif
+verdi data structure import ase <span class="m">9008845</span>.cif
+</pre></div>
+</div>
+<p>As before, you will get the <code class="docutils literal notranslate"><span class="pre">PK</span></code> of the imported structure.
+We note that a <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> can also be exported to file to various formats.
+As an example, let’s export the structure in XSF format and visualize it
+with XCrySDen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi data structure <span class="nb">export</span> --format<span class="o">=</span>xsf &lt;PK&gt; &gt; exported.xsf
+xcrysden --xsf exported.xsf
+</pre></div>
+</div>
+<p>You should see the GaAs supercell (8 atoms) that we downloaded
+from the COD database (in CIF format), imported into AiiDA and exported back
+into a different format (XSF).</p>
+<p>In particular, the structure that we imported (and converted from CIF
+to an explicit list of atoms) used the conventional cell with 8 atoms,
+rather than the primitive one (with 2 atoms only).</p>
+<div class="section" id="getting-the-primitive-structure">
+<h3>2.6.1. Getting the primitive structure<a class="headerlink" href="#getting-the-primitive-structure" title="Permalink to this headline">¶</a></h3>
+<p>We will now use <a class="reference external" href="https://github.com/giovannipizzi/seekpath">seekpath</a> (that internally uses <a class="reference external" href="https://atztogo.github.io/spglib/">spglib</a>),
+to obtain the primitive cell from the conventional one.
+Actually, seekpath does more: it will also standardise the orientation of
+the structure, and suggest the path for a band-structure calculation.</p>
+<p>We will not use seekpath directly, but a wrapper for AiiDA, that converts
+to and from AiiDA data types automatically (in particular, it reads
+directly AiiDA data nodes, and returns AiiDA nodes). The full documentation
+of these wrapper methods can be found <a class="reference external" href="https://aiida.readthedocs.io/projects/aiida-core/en/latest/datatypes/kpoints.html#automatic-computation-of-k-point-paths">on this page</a>.</p>
+<p>As a first thing, in the terminal, open an ipython shell with the AiiDA
+environment pre-loaded. This can be achieved by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi shell
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you prefer working in jupyter, you can do so.</p>
+<p>Open your browser (the one with jupyter that you opened in the <a class="reference internal" href="setup-no-cloud.html#setup-jupyter-oxford-2020"><span class="std std-ref">setup</span></a>
+chapter of this tutorial), then create a new Python 3 notebook (with the button “New”
+in the top right of the jupyter page, and then select “Python 3”).</p>
+<p>Give the notebook a name: click on the word “Untitled” at the top, then
+type a file name (e.g. “create_supercell”) and confirm.</p>
+<p>The only additional thing you need to do is to load the AiiDA environment.
+In the first code cell, type <code class="docutils literal notranslate"><span class="pre">%aiida</span></code> and confirm with Shift+ENTER.</p>
+<p>You should get a confirmation message “Loaded AiiDA DB environment”.
+You can then work as usual in jupyter, adding the code in the following cells.</p>
+</div>
+<p>Now, in this ipython shell (or in jupyter), you can import the wrapper function (that internally uses
+seekpath) as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.tools</span> <span class="kn">import</span> <span class="n">get_kpoints_path</span>
+</pre></div>
+</div>
+<p>We now want to use it. As you can see in the <a class="reference external" href="https://aiida.readthedocs.io/projects/aiida-core/en/latest/apidoc/aiida.tools.data.array.kpoints.html#aiida.tools.data.array.kpoints.get_kpoints_path">documentation</a>, you need to pass
+as a parameter a <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> node (in our case, the node that you imported earlier from COD).
+To load a node in the ipython shell, use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">structure</span> <span class="o">=</span> <span class="n">load_node</span><span class="p">(</span><span class="o">&lt;</span><span class="n">PK</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;PK&gt;</span></code> is the of the <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> node you imported earlier.
+At this point you are ready to get the primitive structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seekpath_data</span> <span class="o">=</span> <span class="n">get_kpoints_path</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+<span class="n">primitive</span> <span class="o">=</span> <span class="n">seekpath_data</span><span class="p">[</span><span class="s1">&#39;primitive_structure&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Exercise</strong>: Check that the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> object is an AiiDA <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> node, and that it is still
+not stored in the database (you can just print it). Moreover, check that you indeed obtained a
+primitive structure by inspecting the unit cell using
+<code class="docutils literal notranslate"><span class="pre">print(primitive.cell)</span></code>, and the list and position of the atoms with <code class="docutils literal notranslate"><span class="pre">print(primitive.sites)</span></code>.</p>
+</div>
+<div class="section" id="preserving-the-provenance">
+<h3>2.6.2. Preserving the provenance<a class="headerlink" href="#preserving-the-provenance" title="Permalink to this headline">¶</a></h3>
+<p>AiiDA is focused on making it easy to track the provenance of your calculation, i.e., the history of how it
+has been generated, by which calculation, and with which inputs.
+If you were just to store the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> <code class="docutils literal notranslate"><span class="pre">StructureData</span></code> node, you would lose its provenance.
+Instead, AiiDA provides simple tools to store it automatically in the form of a graph, where nodes are either
+data nodes (as the one we have just seen), or calculations (i.e., “black boxes” that get data as input,
+and create new data as output). Links between nodes represent the logical relationship between calculations and
+their inputs and outputs.</p>
+<p>While we refer to the full <a class="reference external" href="https://aiida.readthedocs.io/projects/aiida-core/en/v1.1.1/reference/index.html">AiiDA documentation</a> for more in-depth explanations, here we show the simplest way to
+run a python function while keeping the provenance at the same time.</p>
+<p>This can be achieved by using a <code class="docutils literal notranslate"><span class="pre">calcfunction</span></code>: this is a wrapper around python functions
+(technically, a python function decorator) that takes care of storing the execution of that function in the graph.
+To use it, you need first to create a simple function that gets one or more AiiDA nodes, and returns one AiiDA node
+(or a dictionary of AiiDA nodes). Moreover, you need to decorate it as a <code class="docutils literal notranslate"><span class="pre">calcfunction</span></code>, so that when it will be run,
+it will be stored in the database.</p>
+<p>Here is the complete code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="kn">import</span> <span class="n">calcfunction</span>
+
+<span class="nd">@calcfunction</span>
+<span class="k">def</span> <span class="nf">get_primitive</span><span class="p">(</span><span class="n">input_structure</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">aiida.tools</span> <span class="kn">import</span> <span class="n">get_kpoints_path</span>
+    <span class="n">seekpath_data</span> <span class="o">=</span> <span class="n">get_kpoints_path</span><span class="p">(</span><span class="n">input_structure</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;primitive_structure&#39;</span><span class="p">:</span> <span class="n">seekpath_data</span><span class="p">[</span><span class="s1">&#39;primitive_structure&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;seekpath_parameters&#39;</span><span class="p">:</span> <span class="n">seekpath_data</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Once you have defined the function, run it on the <code class="docutils literal notranslate"><span class="pre">structure</span></code> node you loaded earlier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">get_primitive</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+<span class="n">primitive</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;primitive_structure&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The first thing you can notice (by printing <code class="docutils literal notranslate"><span class="pre">primitive</span></code>) is that now this node
+has been automatically stored.
+Additionally, you can check who created it simply as <code class="docutils literal notranslate"><span class="pre">creator_function</span> <span class="pre">=</span> <span class="pre">primitive.creator</span></code>.
+You can for instance check the name of the function that was run, using <code class="docutils literal notranslate"><span class="pre">creator_function.attributes['function_name']</span></code>
+(this returns <code class="docutils literal notranslate"><span class="pre">get_primitive</span></code>, the name of the function that we decorated as a <code class="docutils literal notranslate"><span class="pre">calc_function</span></code>).
+Moreover, you can check the inputs of this function.</p>
+<p><strong>Exercise</strong>: Use <code class="docutils literal notranslate"><span class="pre">creator_function.inputs.input_structure</span></code> to get the input of the function called <code class="docutils literal notranslate"><span class="pre">input_structure</span></code>
+(the name is taken from the parameter name in the definition of the <code class="docutils literal notranslate"><span class="pre">get_primitive</span></code> function) and check that it
+is the exact same node that you started from.</p>
+<p><strong>Exercise</strong>: Go in a bash shell (e.g., open a new terminal – remember to also enter the virtual environment using <code class="docutils literal notranslate"><span class="pre">workon</span> <span class="pre">aiida</span></code>!). You can inspect graphically the full provenance of a given node using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi node graph generate &lt;PK&gt;
+</pre></div>
+</div>
+<p>where we suggest here to use the PK of the <code class="docutils literal notranslate"><span class="pre">creator_function</span></code>. The code will generate a PDF that you can
+open, and that should look like the following image:</p>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/calcfunction_provenance.png"><img alt="../../../_images/calcfunction_provenance.png" src="../../../_images/calcfunction_provenance.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Provenance graph for the calcfunction used to obtain the primitive structure of GaAs.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>TAKE HOME MESSAGE</strong></p>
+<p>AiiDA makes it very easy to convert python functions into <code class="docutils literal notranslate"><span class="pre">calcfunctions</span></code> that, every time
+they are executed, represent their execution in the AiiDA graph.</p>
+<p>The calc function itself is represented as a Calculation Node; all its function inputs
+and its (labeled) function outputs are also stored as AiiDA data nodes and are linked
+via INPUT and CREATE links, respectively.</p>
+<p>It is possible to browse such graph, that tracks the <em>provenance</em> of the output data.
+Moreover, having the exact inputs tracked makes each calculation <em>reproducible</em>.</p>
+<p>Finally (as we have already seen as an example in the previous sections for
+calculation jobs), outputs of a calculation can become inputs to a new calculation.
+Therefore, the AiiDA data provenance graph is a <strong>directed acyclic graph</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While you can run the <code class="docutils literal notranslate"><span class="pre">get_kpoints_path</span></code> function as many times you want (and it will return
+unstored nodes, so it will not clutter your AiiDA database), remember that <em>every time</em> you run the
+<code class="docutils literal notranslate"><span class="pre">get_primitive()</span></code> calc function, you will get a bunch of new nodes in the database automatically stored for you.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="automated_wannierisation.html" class="btn btn-neutral float-right" title="3. Automated high-throughput wannierisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup-no-cloud.html" class="btn btn-neutral float-left" title="1. Getting set up" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (Theory and Simulation of Materials (THEOS), Switzerland. All rights reserved
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Automated high-throughput wannierisation &mdash; AiiDA Wannier90 Tutorial (2020)  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="2. A first taste of AiiDA" href="first_taste.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> AiiDA Wannier90 Tutorial (2020)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial materials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2020, Wannier workshop Virtual Edition (aiida-core 1.1.1)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#aiida-wannier90-hands-on">AiiDA-Wannier90 hands-on</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#demo">Demo</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="setup-no-cloud.html">1. Getting set up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_taste.html">2. A first taste of AiiDA</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">3. Automated high-throughput wannierisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#in-depth-tutorial">In-depth tutorial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AiiDA Wannier90 Tutorial (2020)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">2020 Wannier tutorial “Virtual Edition”</a> &raquo;</li>
+        
+      <li>3. Automated high-throughput wannierisation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/pages/2020_Oxford/sections/automated_wannierisation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="automated-high-throughput-wannierisation">
+<span id="oxford-2020-autowannier"></span><h1>3. Automated high-throughput wannierisation<a class="headerlink" href="#automated-high-throughput-wannierisation" title="Permalink to this headline">¶</a></h1>
+<p>In the following tutorial you will learn how to perform automated high-throughput Wannierisation using
+a dedicated AiiDA workchain.</p>
+<p>The protocol for automating the construction of Wannier functions is discussed in the following article:</p>
+<ul class="simple">
+<li><p>Valerio Vitale, Giovanni Pizzi, Antimo Marrazzo, Jonathan Yates, Nicola Marzari, Arash Mostofi,
+<em>Automated high-throughput wannierisation</em>, accepted in npj Computational Materials (2020);
+<a class="reference external" href="https://arxiv.org/abs/1909.00433">https://arxiv.org/abs/1909.00433</a></p></li>
+</ul>
+<p>whose data is available on the <a class="reference external" href="http://archive.materialscloud.org">Materials Cloud Archive</a> as:</p>
+<ul class="simple">
+<li><p>Valerio Vitale, Giovanni Pizzi, Antimo Marrazzo, Jonathan R. Yates, Nicola Marzari, Arash A. Mostofi,
+Automated high-throughput Wannierisation, Materials Cloud Archive (2019), <a class="reference external" href="https://doi.org/10.24435/materialscloud:2019.0044/v2">doi: 10.24435/materialscloud:2019.0044/v2</a>.</p></li>
+</ul>
+<p>The protocol leverages the SCDM method introduced in:</p>
+<ul class="simple">
+<li><p>Anil Damle, Lin Lin, and Lexing Ying,
+<a class="reference external" href="https://doi.org/10.1021/ct500985f">Compressed representation of kohn–sham orbitals via selected columns of the density matrix</a>
+Journal of Chemical Theory and Computation 11, 1463–1469 (2015).</p></li>
+<li><p>Anil Damle and Lin Lin,
+<a class="reference external" href="https://doi.org/10.1137/17M1129696">Disentanglement via entanglement: A unified method for wannier localization</a>,
+Multiscale Modeling &amp; Simulation 16, 1392–1410 (2018).</p></li>
+</ul>
+<p>The initial workflow was written by Antimo Marrazzo (EPFL) and Giovanni Pizzi (EPFL) (and is available, in a Virtual Machine, on the Materials Cloud entry mentioned above). It was later
+substantially improved and upgraded to AiiDA v1.x by Junfeng Qiao (EFPL). The SCDM implementation in
+Quantum ESPRESSO was done by Valerio Vitale (Imperial College London and University of Cambridge).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Launch while you read!</strong>
+The workflow should take a few minutes to run on the virtual machine (5-10 minutes). So, we suggest that you launch it now (following the suggestions below) in the background, while you read through the tutorial.</p>
+</div>
+<div class="section" id="preparation">
+<h2>3.1. Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<p>You can download the launch script for the workflow here: <a class="reference download internal" download="" href="../../../_downloads/41fc098a6347cd8d1653a71b79cc51eb/launch_auto-wannier_workflow.py"><code class="xref download docutils literal notranslate"><span class="pre">launch_auto-wannier_workflow.py</span></code></a>.
+The script accepts one argument, which is the location of the crystal structure file (in XSF format) for which you want to run the Wannierisation.
+As an example, you can pick any one of the simple crystal structures from this list below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../_downloads/ca33e716be0693ac84c85dbd94b3fbb4/Ar2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">Ar2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/78d99bf70a05c46ce5d268b77ad043bb/BrNa.xsf"><code class="xref download docutils literal notranslate"><span class="pre">BrNa.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/5ae58af6361ee748ca8d17ce0f2036af/GaAs.xsf"><code class="xref download docutils literal notranslate"><span class="pre">GaAs.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/bf6475704210ac147704081cec5f21dc/F4Ni2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">F4Ni2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/094ad20782c8d209dc1866c07849a65b/O2Rb2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">O2Rb2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/698d9c8064e25500c08ac032e0ecc013/BaS.xsf"><code class="xref download docutils literal notranslate"><span class="pre">BaS.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/76070959130a2e5369305587a2e022e7/C6Mg4.xsf"><code class="xref download docutils literal notranslate"><span class="pre">C6Mg4.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/fe9813f6bbd7485c6216ffab466e2a84/FNa.xsf"><code class="xref download docutils literal notranslate"><span class="pre">FNa.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/fcb95990d66b0c80ec2ca1f31a828a7e/O2Sr.xsf"><code class="xref download docutils literal notranslate"><span class="pre">O2Sr.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/1b96ebe131c840c83a090cf7c4d90eba/BeO4S.xsf"><code class="xref download docutils literal notranslate"><span class="pre">BeO4S.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/0fec9484dd965597e709058d48adcb5a/CaO.xsf"><code class="xref download docutils literal notranslate"><span class="pre">CaO.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/68d80f1ff2caea2b88dcad2c4ea33357/Cr2F4.xsf"><code class="xref download docutils literal notranslate"><span class="pre">Cr2F4.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/c86aa85181a8f2a0aaf2f358ea06f830/O2Pb2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">O2Pb2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/ce23ee5af05e0147c3905ecd4f9f38bc/PtS2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">PtS2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/5b7b7121545b45be211ea117f01b52c6/Br2Ti.xsf"><code class="xref download docutils literal notranslate"><span class="pre">Br2Ti.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/58302774a1e1938e23bfc0768437dc31/Cl2O2Ti2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">Cl2O2Ti2.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/231ce78288fd58dc08da2fb8b8fa8e2c/CsH.xsf"><code class="xref download docutils literal notranslate"><span class="pre">CsH.xsf</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/63c2cf27b9558b31250bc7a4d228c02b/O2Pd2.xsf"><code class="xref download docutils literal notranslate"><span class="pre">O2Pd2.xsf</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>Once you downloaded both the launcher script and one of the XSF files, first adapt the launcher script content, as usual, filling in the names of the codes that you want to use.</p>
+<p>Then, launch the script with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi run launch_auto-wannier_workflow.py CsH.xsf
+</pre></div>
+</div>
+<p>(in the following, we will use CsH as an example); you can replace <code class="docutils literal notranslate"><span class="pre">CsH.xsf</span></code> with any other structure of the list above, e.g. <code class="docutils literal notranslate"><span class="pre">PtS2.xsf</span></code>, or <code class="docutils literal notranslate"><span class="pre">Br2Ti.xsf</span></code>, …</p>
+</div>
+<div class="section" id="introduction">
+<h2>3.2. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The use of maximally-localised Wannier functions (MLWFs) in high-throughput (HT) workflows
+has been hindered by the fact that generating MLWFs automatically and robustly without any user
+intervention and for arbitrary materials is, in general, very challenging.</p>
+<p>The procedure to obtain MLWFs requires to specify
+a number of parameters that depends on the specific system under study,
+such as</p>
+<ul class="simple">
+<li><p>the type of projections to build the <img class="math" src="../../../_images/math/a8b9ed3f434cce62276789d79c539e4b2bb0b6a4.svg" alt="A_{mn}({\mathbf{k}})"/> matrix</p></li>
+</ul>
+<p>and, in the case of entangled bands, many other parameters like</p>
+<ul class="simple">
+<li><p>the number of Wannier functions,</p></li>
+<li><p>the frozen energy window,</p></li>
+<li><p>the outer energy window, …</p></li>
+</ul>
+<p>The SCDM method allows to circumvent the need to specify initial projections,
+by introducting an algorithm that builds the <img class="math" src="../../../_images/math/a8b9ed3f434cce62276789d79c539e4b2bb0b6a4.svg" alt="A_{mn}({\mathbf{k}})"/> matrix by
+optimally selecting columns of the density matrix <img class="math" src="../../../_images/math/53ea950764730f1558d72215ed5fcdddcee01602.svg" alt="P_{\mathbf{k}}"/></p>
+<div class="math">
+<p><img src="../../../_images/math/6d2a17e15d2520d05c44c475d9142da3797bda61.svg" alt="P_{\mathbf{k}}(\mathbf{r},\mathbf{r'})=\sum_{n=1}^{J}f(\epsilon_{n\mathbf{k}})\psi_{n{\mathbf{k}}}(\mathbf{r})\psi^*_{n{\mathbf{k}}}(\mathbf{r'})"/></p>
+</div><p>where <img class="math" src="../../../_images/math/fd515189f2291b8e2be1178a0c178a86695df3c6.svg" alt="f(\epsilon_{n\mathbf{k}})"/> is an occupation function.
+The SCDM algorithm is based on a QR factorization with column pivoting (QRCP) and it is
+currently implemented in the <code class="docutils literal notranslate"><span class="pre">pw2wannier90.x</span></code> code of Quantum Espresso.</p>
+<p>It is worth to stress that the occupation function does not necessarily correspond to
+a physical smearing, but it is used as a “window function” that restricts the manifold to the energy region of interest.
+For example, the isolated-band case can be recovered by setting <img class="math" src="../../../_images/math/fee86d4a76d128e87b611514b6043abc66d67859.svg" alt="f(\epsilon_{n\mathbf{k}})=1"/> for energy values
+<img class="math" src="../../../_images/math/a1b4ffab25b70b9b3887c52ccec0062f9a9bb94c.svg" alt="\epsilon_{n\mathbf{k}}"/> within the energy range of the isolated bands, and zero elsewhere.</p>
+<p>Another typical choice for the occupation function is the so-called <em>complementary error function</em> (<code class="docutils literal notranslate"><span class="pre">erfc</span></code>)</p>
+<div class="math">
+<p><img src="../../../_images/math/770616eed8f88066018abd29ff3baced7191b22a.svg" alt="f(\epsilon)=\frac{1}{2}\mathrm{erfc}\left(\frac{\epsilon - \mu}{\sigma}\right)"/></p>
+</div><p>and it is used to to deal with a manifold of bands that are entangled only in the upper energy region (e.g. for metals, or for the conduction band of insulators).
+Another possible choice for the occupation function could be a Gaussian, for instance to extract bands in a specific energy range from a fully
+entangled manifold.</p>
+<p>While the SCDM method allows to avoid the disentanglement procedure, and so the need to specify
+the frozen and outer window, it does not provide a recipe to set the smearing function parameters
+<img class="math" src="../../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.svg" alt="\mu"/> and <img class="math" src="../../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.svg" alt="\sigma"/>. In addition, the number of Wannier functions remains to be set and
+a sensible value typically requires some chemical consideration, such as counting the number of atomic orbitals
+of a given orbital character (e.g. <img class="math" src="../../../_images/math/106b04b320e75010b1d8029e59244f234f75e6f9.svg" alt="s"/>, <img class="math" src="../../../_images/math/141bbefb74014fc5e43499901bf78607ae335583.svg" alt="p"/>, <img class="math" src="../../../_images/math/badad346f6fbe2e237af99bfbd9a93a4da53a3da.svg" alt="d"/>, <img class="math" src="../../../_images/math/22f3a13a82cb65c336f96a6e5f8e828e85cb4d9c.svg" alt="sp^3"/>, …).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code> (distributed in the <a class="reference external" href="https://github.com/aiidateam/aiida-wannier90-workflows">aiida-wannier90-workflows package</a>) is an AiiDA workchain that implements a protocol that deals with the choice
+of the number of Wannier functions and sets the parameters <img class="math" src="../../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.svg" alt="\mu"/> and <img class="math" src="../../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.svg" alt="\sigma"/> defining
+the smearing function. For a full explanation of the protocol we refer to the article
+<a class="reference external" href="https://arxiv.org/abs/1909.00433">Automated high-throughput wannierisation</a>, while here we
+just outline the main features.</p>
+<p>The workflow starts by running a DFT calculation (with Quantum ESPRESSO) using automated workchains distributed within the <a class="reference external" href="https://github.com/aiidateam/aiida-quantumespresso">aiida-quantumespresso</a> plugin, that take care of
+automation for the calculations performed with Quantum ESPRESSO (QE).
+This is followed by a calculation of the <em>projectability</em>, that is the projection of the Kohn-Sham states
+onto localised atomic orbitals:</p>
+<div class="math">
+<p><img src="../../../_images/math/dcec290081f717bff5c7b74aaa69feeb4caf8aaf.svg" alt="p_{n\mathbf{k}} = \sum_{I,l,m}|\langle \psi_{n\mathbf{k}} | \phi_{Ilm}^{\mathbf{k}}\rangle|^2,"/></p>
+</div><p>where the <img class="math" src="../../../_images/math/0366bd9a0f15f505955e758f068555c7920ee2c1.svg" alt="\phi_{Ilm}(\mathbf{k})"/> are the pseudo-atomic orbitals (PAO) employed in
+the generation of the pseudopotentials, <img class="math" src="../../../_images/math/015755a22b6219b345c36a9a47b091dc56007486.svg" alt="I"/> is an index running over the atoms in the cell
+and <img class="math" src="../../../_images/math/251130bcca0ff268c546a4648833d510199b54be.svg" alt="lm"/> define the usual angular momentum quantum numbers.</p>
+<p>The workflow is designed for the specific use case where we are interested in wannierising the occupied bands (plus, optionally, some unoccupied
+or partially occupied bands) in insulators and in metals.</p>
+<p>The <strong>number of Wannier functions</strong> is automatically set equal to the number of PAOs defined in the pseudopotentials (and the pseudopotentials are automatically taken from the <a class="reference external" href="https://www.materialscloud.org/discover/sssp/table/efficiency">SSSP efficiency library</a>).
+The projectabilities on these PAO orbitals are then computed and used to
+set the <strong>optimal smearing function (erfc) parameters</strong> <img class="math" src="../../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.svg" alt="\mu"/> and <img class="math" src="../../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.svg" alt="\sigma"/>, as explained in the paper
+<a class="reference external" href="https://arxiv.org/abs/1909.00433">Automated high-throughput wannierisation</a>.
+After the calculation of the projectabilities, the workflow proceeds with the usual Wannierisation step: first
+it computes the overlap and projection matrices using <code class="docutils literal notranslate"><span class="pre">pw2wannier90</span></code>, and then it runs the Wannier90 code.</p>
+<p>Here we summarise the main steps of the <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code>:</p>
+<ul class="simple">
+<li><p>SCF (QuantumESPRESSO <code class="docutils literal notranslate"><span class="pre">pw.x</span></code>)</p></li>
+<li><p>NSCF (QuantumESPRESSO <code class="docutils literal notranslate"><span class="pre">pw.x</span></code>)</p></li>
+<li><p>Projectability (QuantumESPRESSO <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>)</p></li>
+<li><p>Wannier90 pre-processing (<code class="docutils literal notranslate"><span class="pre">wannier90.x</span> <span class="pre">-pp</span></code>)</p></li>
+<li><p>Overlap matrices <img class="math" src="../../../_images/math/894ac2c6d8faa525344501ab10c5b62c474f6741.svg" alt="M_{mn}"/>, initial projections with SCDM <img class="math" src="../../../_images/math/b5f868cfb3a61b71283891ee4accd3dced328479.svg" alt="A_{mn}"/> (QuantumESPRESSO <code class="docutils literal notranslate"><span class="pre">pw2wannier90.x</span></code>)</p></li>
+<li><p>Wannierisation (<code class="docutils literal notranslate"><span class="pre">wannier90.x</span></code>)</p></li>
+</ul>
+<p>The output of the workflow includes several nodes, among which the projectabilities
+and interpolated band structure, that we are going to inspect after the run.</p>
+</div>
+<div class="section" id="running-the-workflow">
+<h2>3.3. Running the workflow<a class="headerlink" href="#running-the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>If you have not launch the script yet, please do it now!</p>
+<p>Here we focus on how to run the <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code>, the AiiDA workchain
+that implements the automation workflow to obtain MLWFs.</p>
+<p><strong>Important note</strong>: For this tutorial, in order to keep the total simulation time down to ~5-10 minutes on a typical laptop, we run the workflow using the <code class="docutils literal notranslate"><span class="pre">testing</span></code> peotocol, <em>where all the wavefunction cutoffs are halved to
+speed up the calculations</em> (with respect to the converged
+and tested cutoffs suggested by the SSSP pseudopotential library). For production please use the <code class="docutils literal notranslate"><span class="pre">theos-ht-1.0</span></code> protocol (or any other protocol with converged cutoffs).</p>
+<p>We remind you that, to get a list of all the AiiDA processes (including calculations and workchains) that are running and their status you can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi process list
+</pre></div>
+</div>
+<p>or alternatively</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi process list -p1 -a
+</pre></div>
+</div>
+<p>to see <em>all</em> workflows and calculations, even completed, that have been launched in the past 1 day.</p>
+<p>Since you have already run the workflow by now, run the commands above to retrieve the corresponding PKs.</p>
+<p>Here is the script that you have run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env runaiida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">aiida.orm</span> <span class="k">import</span> <span class="n">StructureData</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Code</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">aiida.engine</span> <span class="k">import</span> <span class="n">submit</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="k">import</span> <span class="n">read</span> <span class="k">as</span> <span class="n">aseread</span>
+<span class="kn">from</span> <span class="nn">aiida_wannier90_workflows.workflows</span> <span class="k">import</span> <span class="n">Wannier90BandsWorkChain</span>
+
+<span class="c1"># Codenames for pw.x, pw2wannier90.x, projwfc.x and wannier90.x</span>
+<span class="c1"># Please modify these according to your machine</span>
+<span class="n">pw_code</span> <span class="o">=</span> <span class="n">Code</span><span class="o">.</span><span class="n">get_from_string</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># e.g. &#39;qe-6.5-pw@localhost&#39;</span>
+<span class="n">pw2wan_code</span> <span class="o">=</span> <span class="n">Code</span><span class="o">.</span><span class="n">get_from_string</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># e.g. &#39;qe-6.5-pw2wannier90@localhost&#39;</span>
+<span class="n">projwfc_code</span> <span class="o">=</span> <span class="n">Code</span><span class="o">.</span><span class="n">get_from_string</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># e.g. &#39;qe-6.5-projwfc@localhost&#39;</span>
+<span class="n">wan_code</span> <span class="o">=</span> <span class="n">Code</span><span class="o">.</span><span class="n">get_from_string</span><span class="p">(</span><span class="s2">&quot;&lt;CODE LABEL&gt;&quot;</span><span class="p">)</span>  <span class="c1"># e.g. &#39;wannier90-3.1.0-wannier@localhost&#39;</span>
+
+<span class="c1"># The 1st commandline argument specifies the structure to be calculated</span>
+<span class="n">xsf_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># e.g. &#39;CsH.xsf&#39;</span>
+
+<span class="c1"># Read xsf file and convert into a stored StructureData</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">StructureData</span><span class="p">(</span><span class="n">ase</span><span class="o">=</span><span class="n">aseread</span><span class="p">(</span><span class="n">xsf_file</span><span class="p">))</span>
+
+<span class="c1"># Prepare the builder to launch the workchain</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">Wannier90BandsWorkChain</span><span class="o">.</span><span class="n">get_builder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">structure</span> <span class="o">=</span> <span class="n">structure</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pw&#39;</span><span class="p">:</span> <span class="n">pw_code</span><span class="p">,</span>
+    <span class="s1">&#39;pw2wannier90&#39;</span><span class="p">:</span> <span class="n">pw2wan_code</span><span class="p">,</span>
+    <span class="s1">&#39;projwfc&#39;</span><span class="p">:</span> <span class="n">projwfc_code</span><span class="p">,</span>
+    <span class="s1">&#39;wannier90&#39;</span><span class="p">:</span> <span class="n">wan_code</span>
+<span class="p">}</span>
+<span class="c1"># For this tutorial, we are using the &#39;testing&#39; protocol,</span>
+<span class="c1"># with all cutoffs halved, to speed up the simulations</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="nb">dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;testing&#39;</span><span class="p">})</span>
+<span class="c1"># Flags to control the workchain behaviour</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">controls</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># If True, compute only valence bands (NB: use for insulators only!)</span>
+    <span class="s1">&#39;only_valence&#39;</span><span class="p">:</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+    <span class="c1"># If True, perform maximal-localisation (MLWF) procedure, i.e., minimise the spread Omega</span>
+    <span class="s1">&#39;do_mlwf&#39;</span><span class="p">:</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Submits the workchain</span>
+<span class="n">workchain</span> <span class="o">=</span> <span class="n">submit</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;launched WorkChain&lt;</span><span class="si">{}</span><span class="s1">&gt; for structure </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workchain</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">get_formula</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use `verdi process list` or `verdi process show </span><span class="si">{}</span><span class="s2">` to check the progress&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workchain</span><span class="o">.</span><span class="n">pk</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Inspect the script in detail now, and make sure that you understand all its parts.
+The comments should guide you through it.
+As you will notice, the amount of information to provide
+to the workflow is really minimal: just the codes to use, the crystal structure, and some flags to control the behavior (which protocol to use, if you want to compute
+only valence bands, and if you want to run the MLWF step).</p>
+</div>
+<div class="section" id="analyzing-the-outputs-of-the-workflow">
+<h2>3.4. Analyzing the outputs of the workflow<a class="headerlink" href="#analyzing-the-outputs-of-the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Now we analyse the reports and outputs of the workflow using the command line.</p>
+<p>Both while the <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code> is running, and after its completion,
+you can monitor its progress by
+looking at its “report”, using the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi process report &lt;PK&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;PK&gt;</span></code> corresponds to the workchain PK. You will see a list of log with messages produced by the workchain,
+including the PKs of all its sub-workchains and of the calculations launched by the <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code>.
+The report will be similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">27</span> <span class="p">[</span><span class="mi">88</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">setup_protocol</span><span class="p">]:</span> <span class="n">running</span> <span class="n">the</span> <span class="n">workchain</span> <span class="k">with</span> <span class="n">the</span> <span class="s2">&quot;testing&quot;</span> <span class="n">protocol</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">27</span> <span class="p">[</span><span class="mi">89</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">setup</span><span class="p">]:</span> <span class="n">workchain</span> <span class="n">controls</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">valence</span> <span class="o">+</span> <span class="n">conduction</span> <span class="n">bands</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">27</span> <span class="p">[</span><span class="mi">90</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">run_seekpath</span><span class="p">]:</span> <span class="n">running</span> <span class="n">seekpath</span> <span class="n">to</span> <span class="n">get</span> <span class="n">primitive</span> <span class="n">structure</span> <span class="k">for</span><span class="p">:</span> <span class="n">CsH</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">28</span> <span class="p">[</span><span class="mi">91</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">setup_parameters</span><span class="p">]:</span> <span class="n">number</span> <span class="n">of</span> <span class="n">machines</span> <span class="mi">1</span> <span class="n">auto</span><span class="o">-</span><span class="nb">set</span> <span class="n">according</span> <span class="n">to</span> <span class="n">number</span> <span class="n">of</span> <span class="n">atoms</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">30</span> <span class="p">[</span><span class="mi">92</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">run_wannier_workchain</span><span class="p">]:</span> <span class="n">launching</span> <span class="n">Wannier90WorkChain</span><span class="o">&lt;</span><span class="mi">514</span><span class="o">&gt;</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">31</span> <span class="p">[</span><span class="mi">93</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_scf</span><span class="p">]:</span> <span class="n">scf</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">PwBaseWorkChain</span><span class="o">&lt;</span><span class="mi">517</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">scf</span> <span class="n">mode</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">33</span> <span class="p">[</span><span class="mi">94</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">517</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">run_calculation</span><span class="p">]:</span> <span class="n">launching</span> <span class="n">PwCalculation</span><span class="o">&lt;</span><span class="mi">523</span><span class="o">&gt;</span> <span class="n">iteration</span> <span class="c1">#1</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">46</span> <span class="p">[</span><span class="mi">95</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">517</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">inspect_calculation</span><span class="p">]:</span> <span class="n">PwCalculation</span><span class="o">&lt;</span><span class="mi">523</span><span class="o">&gt;</span> <span class="n">completed</span> <span class="n">successfully</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">46</span> <span class="p">[</span><span class="mi">96</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">517</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">work</span> <span class="n">chain</span> <span class="n">completed</span> <span class="n">after</span> <span class="mi">1</span> <span class="n">iterations</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">46</span> <span class="p">[</span><span class="mi">97</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">517</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">on_terminated</span><span class="p">]:</span> <span class="n">remote</span> <span class="n">folders</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">cleaned</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">47</span> <span class="p">[</span><span class="mi">98</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_scf</span><span class="p">]:</span> <span class="n">scf</span> <span class="n">PwBaseWorkChain</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">47</span> <span class="p">[</span><span class="mi">99</span>  <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_nscf</span><span class="p">]:</span> <span class="n">nscf</span> <span class="n">number</span> <span class="n">of</span> <span class="n">bands</span> <span class="nb">set</span> <span class="k">as</span> <span class="mi">24</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">48</span> <span class="p">[</span><span class="mi">100</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_nscf</span><span class="p">]:</span> <span class="n">nscf</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">PwBaseWorkChain</span><span class="o">&lt;</span><span class="mi">537</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">nscf</span> <span class="n">mode</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">07</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">49</span> <span class="p">[</span><span class="mi">101</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">537</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">run_calculation</span><span class="p">]:</span> <span class="n">launching</span> <span class="n">PwCalculation</span><span class="o">&lt;</span><span class="mi">540</span><span class="o">&gt;</span> <span class="n">iteration</span> <span class="c1">#1</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">16</span> <span class="p">[</span><span class="mi">102</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">537</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">inspect_calculation</span><span class="p">]:</span> <span class="n">PwCalculation</span><span class="o">&lt;</span><span class="mi">540</span><span class="o">&gt;</span> <span class="n">completed</span> <span class="n">successfully</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">16</span> <span class="p">[</span><span class="mi">103</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">537</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">work</span> <span class="n">chain</span> <span class="n">completed</span> <span class="n">after</span> <span class="mi">1</span> <span class="n">iterations</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">16</span> <span class="p">[</span><span class="mi">104</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>     <span class="p">[</span><span class="mi">537</span><span class="o">|</span><span class="n">PwBaseWorkChain</span><span class="o">|</span><span class="n">on_terminated</span><span class="p">]:</span> <span class="n">remote</span> <span class="n">folders</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">cleaned</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">17</span> <span class="p">[</span><span class="mi">105</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_nscf</span><span class="p">]:</span> <span class="n">nscf</span> <span class="n">PwBaseWorkChain</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">17</span> <span class="p">[</span><span class="mi">106</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">should_do_projwfc</span><span class="p">]:</span> <span class="n">SCDM</span> <span class="n">mu</span> <span class="o">&amp;</span> <span class="n">sigma</span> <span class="n">are</span> <span class="n">auto</span><span class="o">-</span><span class="nb">set</span> <span class="n">using</span> <span class="n">projectability</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">18</span> <span class="p">[</span><span class="mi">107</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_projwfc</span><span class="p">]:</span> <span class="n">projwfc</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">ProjwfcCalculation</span><span class="o">&lt;</span><span class="mi">546</span><span class="o">&gt;</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">27</span> <span class="p">[</span><span class="mi">108</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_projwfc</span><span class="p">]:</span> <span class="n">projwfc</span> <span class="n">ProjwfcCalculation</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">28</span> <span class="p">[</span><span class="mi">109</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_wannier90_pp</span><span class="p">]:</span> <span class="n">number</span> <span class="n">of</span> <span class="n">Wannier</span> <span class="n">functions</span> <span class="n">extracted</span> <span class="kn">from</span> <span class="nn">projections</span><span class="p">:</span> <span class="mi">14</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">29</span> <span class="p">[</span><span class="mi">110</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_wannier90_pp</span><span class="p">]:</span> <span class="n">wannier90</span> <span class="n">postproc</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">Wannier90Calculation</span><span class="o">&lt;</span><span class="mi">559</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">postproc</span> <span class="n">mode</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">35</span> <span class="p">[</span><span class="mi">111</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_wannier90_pp</span><span class="p">]:</span> <span class="n">wannier90</span> <span class="n">postproc</span> <span class="n">Wannier90Calculation</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">38</span> <span class="p">[</span><span class="mi">112</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_pw2wannier90</span><span class="p">]:</span> <span class="n">pw2wannier90</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">Pw2Wannier90Calculation</span><span class="o">&lt;</span><span class="mi">567</span><span class="o">&gt;</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">16</span> <span class="p">[</span><span class="mi">113</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_pw2wannier90</span><span class="p">]:</span> <span class="n">Pw2wannier90Calculation</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">16</span> <span class="p">[</span><span class="mi">114</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">run_wannier90</span><span class="p">]:</span> <span class="n">wannier90</span> <span class="n">step</span> <span class="o">-</span> <span class="n">launching</span> <span class="n">Wannier90Calculation</span><span class="o">&lt;</span><span class="mi">572</span><span class="o">&gt;</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">06</span> <span class="p">[</span><span class="mi">115</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">inspect_wannier90</span><span class="p">]:</span> <span class="n">Wannier90Calculation</span> <span class="n">successfully</span> <span class="n">finished</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">06</span> <span class="p">[</span><span class="mi">116</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">final</span> <span class="n">step</span> <span class="o">-</span> <span class="n">preparing</span> <span class="n">outputs</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">06</span> <span class="p">[</span><span class="mi">117</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span>   <span class="p">[</span><span class="mi">514</span><span class="o">|</span><span class="n">Wannier90WorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">Wannier90WorkChain</span> <span class="n">successfully</span> <span class="n">completed</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">07</span> <span class="p">[</span><span class="mi">118</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">wannier90</span> <span class="n">interpolated</span> <span class="n">bands</span> <span class="n">pk</span><span class="p">:</span> <span class="mi">575</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">19</span> <span class="mi">08</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">07</span> <span class="p">[</span><span class="mi">119</span> <span class="o">|</span> <span class="n">REPORT</span><span class="p">]:</span> <span class="p">[</span><span class="mi">495</span><span class="o">|</span><span class="n">Wannier90BandsWorkChain</span><span class="o">|</span><span class="n">results</span><span class="p">]:</span> <span class="n">Wannier90BandsWorkChain</span> <span class="n">successfully</span> <span class="n">completed</span>
+</pre></div>
+</div>
+<p>Once the workchain has finished to run, you can look at all its inputs and outputs with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi node show &lt;PK&gt;
+</pre></div>
+</div>
+<p>You should obtain an output similar to what follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Property</span>     <span class="n">Value</span>
+<span class="o">-----------</span>  <span class="o">------------------------------------</span>
+<span class="nb">type</span>         <span class="n">Wannier90BandsWorkChain</span>
+<span class="n">state</span>        <span class="n">Finished</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pk</span>           <span class="mi">404</span>
+<span class="n">uuid</span>         <span class="n">df46175b</span><span class="o">-</span><span class="mi">4634</span><span class="o">-</span><span class="mi">4</span><span class="n">edf</span><span class="o">-</span><span class="n">a303</span><span class="o">-</span><span class="n">e90af98a27fc</span>
+<span class="n">label</span>
+<span class="n">description</span>
+<span class="n">ctime</span>        <span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">18</span> <span class="mi">18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mf">36.294955</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="n">mtime</span>        <span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">18</span> <span class="mi">18</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mf">59.245496</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="n">computer</span>     <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">localhost</span>
+
+<span class="n">Inputs</span>                          <span class="n">PK</span>    <span class="n">Type</span>
+<span class="o">------------------------------</span>  <span class="o">----</span>  <span class="o">-------------</span>
+<span class="n">code</span>
+    <span class="n">wannier90</span>                   <span class="mi">17</span>    <span class="n">Code</span>
+    <span class="n">projwfc</span>                     <span class="mi">6</span>     <span class="n">Code</span>
+    <span class="n">pw2wannier90</span>                <span class="mi">7</span>     <span class="n">Code</span>
+    <span class="n">pw</span>                          <span class="mi">1</span>     <span class="n">Code</span>
+<span class="n">controls</span>
+    <span class="n">kpoints_distance_for_bands</span>  <span class="mi">401</span>   <span class="n">Float</span>
+    <span class="n">do_disentanglement</span>          <span class="mi">400</span>   <span class="n">Bool</span>
+    <span class="n">plot_wannier_functions</span>      <span class="mi">399</span>   <span class="n">Bool</span>
+    <span class="n">retrieve_hamiltonian</span>        <span class="mi">398</span>   <span class="n">Bool</span>
+    <span class="n">auto_projections</span>            <span class="mi">397</span>   <span class="n">Bool</span>
+    <span class="n">do_mlwf</span>                     <span class="mi">396</span>   <span class="n">Bool</span>
+    <span class="n">only_valence</span>                <span class="mi">395</span>   <span class="n">Bool</span>
+<span class="n">protocol</span>                        <span class="mi">403</span>   <span class="n">Dict</span>
+<span class="n">structure</span>                       <span class="mi">402</span>   <span class="n">StructureData</span>
+
+<span class="n">Outputs</span>                         <span class="n">PK</span>  <span class="n">Type</span>
+<span class="o">----------------------------</span>  <span class="o">----</span>  <span class="o">--------------</span>
+<span class="n">nscf_parameters</span>                <span class="mi">454</span>  <span class="n">Dict</span>
+<span class="n">primitive_structure</span>            <span class="mi">409</span>  <span class="n">StructureData</span>
+<span class="n">projwfc_bands</span>                  <span class="mi">460</span>  <span class="n">BandsData</span>
+<span class="n">projwfc_projections</span>            <span class="mi">459</span>  <span class="n">ProjectionData</span>
+<span class="n">pw2wannier90_remote_folder</span>     <span class="mi">477</span>  <span class="n">RemoteData</span>
+<span class="n">scf_parameters</span>                 <span class="mi">437</span>  <span class="n">Dict</span>
+<span class="n">seekpath_parameters</span>            <span class="mi">407</span>  <span class="n">Dict</span>
+<span class="n">wannier90_interpolated_bands</span>   <span class="mi">484</span>  <span class="n">BandsData</span>
+<span class="n">wannier90_parameters</span>           <span class="mi">485</span>  <span class="n">Dict</span>
+<span class="n">wannier90_remote_folder</span>        <span class="mi">482</span>  <span class="n">RemoteData</span>
+<span class="n">wannier90_retrieved</span>            <span class="mi">483</span>  <span class="n">FolderData</span>
+
+<span class="n">Called</span>      <span class="n">PK</span>  <span class="n">Type</span>
+<span class="o">--------</span>  <span class="o">----</span>  <span class="o">----------------</span>
+<span class="n">CALL</span>       <span class="mi">423</span>  <span class="n">WorkChainNode</span>
+<span class="n">CALL</span>       <span class="mi">406</span>  <span class="n">CalcFunctionNode</span>
+
+<span class="n">Log</span> <span class="n">messages</span>
+<span class="o">---------------------------------------------</span>
+<span class="n">There</span> <span class="n">are</span> <span class="mi">7</span> <span class="n">log</span> <span class="n">messages</span> <span class="k">for</span> <span class="n">this</span> <span class="n">calculation</span>
+<span class="n">Run</span> <span class="s1">&#39;verdi process report 404&#39;</span> <span class="n">to</span> <span class="n">see</span> <span class="n">them</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="analyzing-and-comparing-the-band-structure">
+<h2>3.5. Analyzing and comparing the band structure<a class="headerlink" href="#analyzing-and-comparing-the-band-structure" title="Permalink to this headline">¶</a></h2>
+<p>First let’s give a look at the interpolated band structure by exporting it to a PDF file with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi data bands <span class="nb">export</span> --format mpl_pdf --output band_structure.pdf &lt;PK_bands&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;PK_bands&gt;</span></code> stands for the <code class="docutils literal notranslate"><span class="pre">BandsData</span></code> PK produced by the workflow.
+You can find it from the output of the <code class="code docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">node</span> <span class="pre">show</span> <span class="pre">&lt;PK&gt;</span></code> command
+that you run before.
+You should obtain a PDF like the following:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/CsH_wan_band.png"><img alt="../../../_images/CsH_wan_band.png" src="../../../_images/CsH_wan_band.png" style="width: 100%;" /></a>
+</div>
+<p>Now we compare the Wannier-interpolated bands with the full DFT bands calculation.
+For convenience, we have already computed for you all the full DFT band structures for all the
+compounds for which we provided the XSF above (even if you could easily recompute these band structures using
+the plugins and workflows included in the <code class="docutils literal notranslate"><span class="pre">aiida-quantumespresso</span></code> package). You can download the full DFT bands in xmgrace format (<code class="docutils literal notranslate"><span class="pre">.agr</span></code>) form this list:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../_downloads/fe9d8022f82dc778da4b85f17dc8f16a/Ar2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">Ar2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/1b2fdcae80ade615651157f92b5f98c7/BrNa_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">BrNa_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/9e0028fc7ed200c7a5271e2614c270fe/AsGa_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">AsGa_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/de805512c764d402354ec921da9ebced/F4Ni2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">F4Ni2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/84541adb0f4d5996a6dbd5709c0b2dbb/O2Rb2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">O2Rb2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/7b852ce43f87d19a7d1447b32b9ff5d4/BaS_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">BaS_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/44dff0702e58a45309df7b7aff176066/C6Mg4_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">C6Mg4_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/8fc15a2dd2229893e868492e04da3f8b/FNa_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">FNa_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/26e942efc5116d5e095db6ca35ebdbec/O2Sr_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">O2Sr_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/ee1b72ded9dc101be51ecb7834631301/BeO4S_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">BeO4S_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/e0e6274412ddff05ea9da3dcd24cc102/CaO_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">CaO_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/59ed311242ff6f720a1c53ab6aeee741/Cr2F4_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">Cr2F4_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/032c1ad2a09bac1d3b8a013337b3189f/O2Pb2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">O2Pb2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/5a96f4f838fcecf1561372e6873e48cc/PtS2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">PtS2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/e7669a1edf99db1bbf2132f0f5fe166f/Br2Ti_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">Br2Ti_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/a911196da563525fbb9ac4a1d9355bec/Cl2O2Ti2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">Cl2O2Ti2_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/484ca54a73476da7d264ddcdc77bc662/CsH_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">CsH_dft_bands.agr</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/e328a24761549989511ba7c6133dbd5b/O2Pd2_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">O2Pd2_dft_bands.agr</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>In particular, taking CsH as an example, you can first export the Wannier-interpolated bands that you
+just computed earlier in xmgrace format with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi data bands <span class="nb">export</span> --format agr --output CsH_wan_bands.agr &lt;PK_bands&gt;
+</pre></div>
+</div>
+<p>and then you can compare them with the full DFT band structure using xmgrace typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmgrace CsH_dft_bands.agr CsH_wan_bands.agr
+</pre></div>
+</div>
+<p>where you can replace CsH with the correct chemical formula of the crystal structure that you used.</p>
+<p>For reference, here are the two xmgrace files for CsH:
+<a class="reference download internal" download="" href="../../../_downloads/484ca54a73476da7d264ddcdc77bc662/CsH_dft_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">CsH_dft_bands.agr</span></code></a>
+<a class="reference download internal" download="" href="../../../_downloads/121965e3b1994ab21a3d4707f15543c8/CsH_wan_bands.agr"><code class="xref download docutils literal notranslate"><span class="pre">CsH_wan_bands.agr</span></code></a>.</p>
+<p>In the case of CsH, you should obtain something like the following plot (note that
+we slightly updated the colors and graphical appearance of the plot with
+respect to the default one you would get by running the command above):</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/CsH_diff_bands.png"><img alt="../../../_images/CsH_diff_bands.png" src="../../../_images/CsH_diff_bands.png" style="width: 100%;" /></a>
+</div>
+</div>
+<div class="section" id="analyzing-the-projectabilities">
+<h2>3.6. Analyzing the projectabilities<a class="headerlink" href="#analyzing-the-projectabilities" title="Permalink to this headline">¶</a></h2>
+<p>Now you will see how to look at the projectabilities that have been computed by the
+workchain and then used to obtain <img class="math" src="../../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.svg" alt="\mu"/> and <img class="math" src="../../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.svg" alt="\sigma"/>
+in the automation protocol.
+You can download the following script
+<a class="reference download internal" download="" href="../../../_downloads/30a5165d1489e71a2678d5161740af4a/plot_projectabilities.py"><code class="xref download docutils literal notranslate"><span class="pre">plot_projectabilities.py</span></code></a> and run it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi run plot_projectabilities.py &lt;PK&gt;
+</pre></div>
+</div>
+<p>where PK stands for the <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code> pk.</p>
+<p>You should obtain a plot similar to the following:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/CsH_proj.png"><img alt="../../../_images/CsH_proj.png" src="../../../_images/CsH_proj.png" style="width: 100%;" /></a>
+</div>
+<p><strong>Exercise</strong>: Open the script and try to understand what it is doing.</p>
+<p>As you can see, the protocol to choose <img class="math" src="../../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.svg" alt="\mu"/> and <img class="math" src="../../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.svg" alt="\sigma"/> ensures that the
+SCDM algorithm is applied to a density-matrix that includes (with a large weight) only those Kohn-Sham states
+that have a large projection on the manifold spanned by the PAOs.</p>
+</div>
+<div class="section" id="analyzing-the-provenance-graph">
+<h2>3.7. Analyzing the provenance graph<a class="headerlink" href="#analyzing-the-provenance-graph" title="Permalink to this headline">¶</a></h2>
+<p>We begin by generating the provenance graph with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verdi node graph generate &lt;PK&gt;
+</pre></div>
+</div>
+<p>where the PK corresponds to the workflow you have just run.
+You should obtain something like the following:</p>
+<div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/CsH.dot.jpg"><img alt="../../../_images/CsH.dot.jpg" src="../../../_images/CsH.dot.jpg" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Provenance graph for a single <code class="docutils literal notranslate"><span class="pre">Wannier90BandsWorkChain</span></code> run. (PDF version
+<a class="reference download internal" download="" href="../../../_downloads/ce428b0195029d53cb93d2665c6909f5/CsH.dot.pdf"><code class="xref download docutils literal notranslate"><span class="pre">CsH.dot.pdf</span></code></a>)</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>As you can see, AiiDA has tracked all the inputs provided to all calculations (and their outputs), allowing you (or anyone else) to reproduce it later on.</p>
+</div>
+<div class="section" id="optional-maximal-localisation-and-scdm">
+<h2>3.8. (Optional) Maximal localisation and SCDM<a class="headerlink" href="#optional-maximal-localisation-and-scdm" title="Permalink to this headline">¶</a></h2>
+<p>Try to modify the <a class="reference download internal" download="" href="../../../_downloads/41fc098a6347cd8d1653a71b79cc51eb/launch_auto-wannier_workflow.py"><code class="xref download docutils literal notranslate"><span class="pre">launch_auto-wannier_workflow.py</span></code></a> script to disable the MLWF
+procedure in order to obtain Wannier functions with SCDM projections that are not maximally localised.</p>
+<p><strong>Exercise</strong>:
+Run the workflow for 1 or 2 materials of the dataset.
+Do you notice any difference when using or not the MLWF procedure?
+Which one gives better results? Do your results agree with the findings of
+the <a class="reference external" href="https://arxiv.org/abs/1909.00433">Automated high-throughput wannierisation</a> paper?</p>
+</div>
+<div class="section" id="optional-browse-your-database-with-the-rest-api">
+<h2>3.9. (Optional) Browse your database with the REST API<a class="headerlink" href="#optional-browse-your-database-with-the-rest-api" title="Permalink to this headline">¶</a></h2>
+<p>Connect to the <a class="reference external" href="https://www.materialscloud.org/explore/connect">AiiDA REST API</a> and browse your database!
+Follow the instructions that you find on the <a class="reference external" href="https://www.materialscloud.org/explore/connect">Materials Cloud website</a>.</p>
+</div>
+<div class="section" id="optional-more-on-aiida">
+<h2>3.10. (Optional) More on AiiDA<a class="headerlink" href="#optional-more-on-aiida" title="Permalink to this headline">¶</a></h2>
+<p>You now have a first taste of the type of problems AiiDA tries to solve,
+and you have seen how it is possible, thanks to the tools provided by AiiDA,
+to develop plugins and workflows to automate your research tasks, while preserving the
+full provenance and guaranteeing reproducibility of your results.</p>
+<p>Here are some options for how to continue:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Continue with the in-depth tutorial and learn more about the <code class="docutils literal notranslate"><span class="pre">verdi</span></code>, <code class="docutils literal notranslate"><span class="pre">verdi</span> <span class="pre">shell</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code> interfaces to AiiDA.
+There is more than enough material to keep you busy for a day.
+You can check for instance the <a class="reference external" href="https://aiida-tutorials.readthedocs.io/en/latest/pages/2019_MARVEL_Psik_MaX/index.html#epfl-2019-homepage" title="(in AiiDA Tutorials)"><span class="xref std std-ref">tutorial held in EPFL in May 2019</span></a> (note that this
+has been tested on a beta version of AiiDA 1.0 and we didn’t check yet if anything needs to be
+adapted for AiiDA 1.1, that you have in your VM).</p></li>
+<li><p><strong>For advanced Linux &amp; python users</strong>: try <a class="reference external" href="https://aiida-core.readthedocs.io/en/latest/install/quick_installation.html">setting up AiiDA directly on your laptop</a>.
+Note that AiiDA depends on a number of services and software that require some time to set up.
+Unfortunately, we will not have the time to help you solve
+issues related to your setup in a tutorial context, but you can refer to the AiiDA documentation
+and to the AiiDA mailing list.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="first_taste.html" class="btn btn-neutral float-left" title="2. A first taste of AiiDA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (Theory and Simulation of Materials (THEOS), Switzerland. All rights reserved
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
