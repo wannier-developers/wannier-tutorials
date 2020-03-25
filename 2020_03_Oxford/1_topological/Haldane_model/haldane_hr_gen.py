@@ -39,7 +39,10 @@ C 0.666667 0.333333 0.500000
 #m=0.2; phi= np.pi/2.0; t1=1.0; t2=m/3.0/np.sqrt(3)+0.01;
 
 # Gapless phase-> trivial
-m=0.2; phi= np.pi/2.0; t1=1.0; t2=m/3.0/np.sqrt(3)-0.01;
+# m=0.2; phi= np.pi/2.0; t1=1.0; t2=m/3.0/np.sqrt(3)-0.01;
+
+# Graphene
+m=0.0; phi= np.pi/2.0; t1=1.0; t2=0;
 
 
 # maximum dimension for hr matrix
