@@ -1,0 +1,8 @@
+&inputpp
+  outdir     =  'out/'
+  prefix     =  'si'
+  seedname   =  'ex1'
+  write_amn  =  .true.
+  write_mmn  =  .true.
+  write_unk  =  .true.
+/
