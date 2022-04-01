@@ -34,7 +34,6 @@
 
   restart      = .true.
   restart_step = 1000
-  selecqread   = .false.
 
   wannierize  = .false.
   num_iter    = 50000
@@ -74,12 +73,12 @@
 
   dvscf_dir   = './save'
 
-  nkf1        = 60
-  nkf2        = 60
-  nkf3        = 60
-  nqf1        = 60
-  nqf2        = 60
-  nqf3        = 60
+  nkf1        = 30
+  nkf2        = 30
+  nkf3        = 30
+  nqf1        = 30
+  nqf2        = 30
+  nqf3        = 30
 
    nk1         = 4
    nk2         = 4

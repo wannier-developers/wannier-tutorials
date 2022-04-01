@@ -1,6 +1,5 @@
 ---
  &inputph
-  recover=.false.
   tr2_ph=1.0d-17,
   prefix='bn',
   amass(1)=10.811,
