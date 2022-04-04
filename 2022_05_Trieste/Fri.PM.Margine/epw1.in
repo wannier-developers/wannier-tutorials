@@ -1,0 +1,64 @@
+--
+&inputepw
+  prefix      = 'mgb2',
+  amass(1)    = 24.305,
+  amass(2)    = 10.811
+  outdir      = './'
+  dvscf_dir   = './save'
+
+  ep_coupling = .true.
+  elph        = .true.
+  epwwrite    = .true.
+  epwread     = .false.
+
+  etf_mem     =  1 
+
+  wannierize  = .true.
+  nbndsub     =  5
+
+  num_iter    = 500
+  dis_froz_max= 8.8
+  proj(1)     = 'B:pz'
+  proj(2)     = 'f=0.5,1.0,0.5:s'
+  proj(3)     = 'f=0.0,0.5,0.5:s'
+  proj(4)     = 'f=0.5,0.5,0.5:s'
+
+  iverbosity  = 2
+
+  fsthick     = 0.2  ! eV
+  degaussw    = 0.05 ! eV
+
+  fermi_plot  = .true.
+  ephwrite    = .true. 
+
+  eliashberg  = .true.
+
+  laniso = .true.
+  limag  = .true.
+  lpade  = .true.
+
+  nsiter   = 500
+  conv_thr_iaxis = 1.0d-3
+  wscut   = 0.5
+  muc     = 0.05
+
+  nstemp   = 2
+  temps    = 10 20
+
+  nk1         = 6
+  nk2         = 6
+  nk3         = 6
+
+  nq1         = 2
+  nq2         = 2
+  nq3         = 2
+
+  mp_mesh_k = .true.
+  nkf1 = 20
+  nkf2 = 20
+  nkf3 = 20
+
+  nqf1 = 10
+  nqf2 = 10
+  nqf3 = 10
+ /
