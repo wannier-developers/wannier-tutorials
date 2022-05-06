@@ -1,0 +1,7 @@
+&projwfc
+    prefix  = 'lco',
+    outdir  = '/mnt/ceph/users/sbeck/QE_tmp/',
+    lsym    = .FALSE.,
+    filpdos = 'lco_bands',
+    filproj = 'lco_bands',
+/

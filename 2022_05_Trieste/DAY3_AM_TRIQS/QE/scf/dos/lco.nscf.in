@@ -1,0 +1,42 @@
+&control
+   calculation        = 'nscf',
+   restart_mode       = 'from_scratch',
+   prefix             = 'lco', 
+   pseudo_dir         = '/mnt/home/sbeck/work/pseudo/gbrv_v1.5/',
+   outdir             = '/mnt/ceph/users/sbeck/QE_tmp/',
+/ 
+&system 
+   ibrav              = 0,
+   nat                = 7,
+   ntyp               = 3,
+   ecutwfc            = 55.0,
+   ecutrho            = 660.0,
+   occupations        = 'tetrahedra',
+/ 
+&electrons 
+   conv_thr           = 1.0d-10,
+   mixing_beta        = 0.7,
+   mixing_mode        = 'local-TF'
+/
+
+ATOMIC_SPECIES 
+   La   138.905       la_pbe_v1.uspp.F.UPF
+   Cu   58.6934       cu_pbe_v1.2.uspp.F.UPF
+   O    15.9994       o_pbe_v1.2.uspp.F.UPF
+
+CELL_PARAMETERS (angstrom)
+  -1.909144696   1.909144696   6.603098061
+   1.909144696  -1.909144696   6.603098061
+   1.909144696   1.909144696  -6.603098061
+
+ATOMIC_POSITIONS (angstrom)
+La           -0.0000000000       -0.0000000000        4.7702839137
+La            1.9091446961        1.9091446961        1.8328141469
+Cu           -0.0000000000       -0.0000000000       -0.0000000000
+O            -0.0000000000        1.9091446961        0.0000000000
+O             1.9091446961       -0.0000000000        0.0000000000
+O            -0.0000000000       -0.0000000000        2.4522239552
+O             1.9091446961        1.9091446961        4.1508741055
+
+k_points automatic
+  21 21 21 0 0 0 

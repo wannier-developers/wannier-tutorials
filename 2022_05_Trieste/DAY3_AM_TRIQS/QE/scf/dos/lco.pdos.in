@@ -1,0 +1,20 @@
+&projwfc
+    prefix = 'lco',
+    outdir = '../../tmp/',
+!    Emin = 0.0,
+!    Emax = 20.0,
+!    degauss = 0.01,
+!    DeltaE = 0.001,
+!    lsym = ,
+!    pawproj = ,
+!    filpdos = 'LL22_0.01',
+!    filproj = 'test',
+!    lwrite_overlaps = .true.,
+!    lbinary_date = ,
+!    kresolveddos = ,
+!    tdosinboxes = ,
+!    n_proj_boxes = ,
+!    irmin = ,
+!    irmax = ,
+!    plotboxes =
+/

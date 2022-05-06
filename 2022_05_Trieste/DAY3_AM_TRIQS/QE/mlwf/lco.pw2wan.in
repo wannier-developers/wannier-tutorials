@@ -1,0 +1,9 @@
+&inputpp 
+   prefix       = 'lco'
+   outdir       = '../tmp/'
+   seedname     = 'lco'
+   write_mmn    = .true.
+   write_amn    = .true.
+   write_spn    = .false.
+   write_unk    = .false.
+/
