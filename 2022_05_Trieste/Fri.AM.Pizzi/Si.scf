@@ -4,7 +4,7 @@ Silicon
     restart_mode    =  'from_scratch'
     prefix          =  'si'
     tprnfor         =  .true.
-    pseudo_dir      =  '/home/junfeng/git/wannier90/pseudo/'
+    pseudo_dir      =  '/media/ictpuser/AiiDA/codes/wannier90/pseudo/'
     outdir          =  'out/'
     iprint          =   2
 /

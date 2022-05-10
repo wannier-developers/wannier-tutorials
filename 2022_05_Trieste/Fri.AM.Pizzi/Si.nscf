@@ -2,7 +2,7 @@ Silicon
  &control
     calculation        =  'nscf'
     prefix             =  'si'
-    pseudo_dir         =  '/home/junfeng/git/wannier90/pseudo/'
+    pseudo_dir         =  '/media/ictpuser/AiiDA/codes/wannier90/pseudo/'
     outdir             =  'out/'
     iprint             =   2
     verbosity          =  'high'
