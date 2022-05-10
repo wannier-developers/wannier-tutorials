@@ -45,8 +45,8 @@
   wscut   = 0.5
   muc     = 0.05
 
-  nstemp   = 18
-  temps    = 1 35
+  nstemp   = 36
+  temps    = 1 36
 
   nk1         = 6
   nk2         = 6
