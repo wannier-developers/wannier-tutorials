@@ -4,6 +4,7 @@
     prefix       = 'mgb2',
     pseudo_dir   = './',
     outdir       = './',
+    verbosity    = 'high'
  /
  &system
     ibrav        = 4,
