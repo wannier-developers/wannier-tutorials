@@ -1,0 +1,9 @@
+&inputpp 
+   outdir = 'out/'
+   prefix = 'batio3'
+   seedname = 'ex4'
+   spin_component = 'none'
+   write_mmn = .true.
+   write_amn = .true.
+   write_unk = .true.
+/
