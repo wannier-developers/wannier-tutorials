@@ -12,3 +12,6 @@ You will find a [PDF document](day1-wannier-tutorial.pdf) for the session and su
 - Exercise 2: [Silicon valence and conduction bands](ex2/)
 - Exercise 3: [Lead Fermi surface and band structure](ex3/)
 - Exercise 4: [BaTiO3 ferroelectricity](ex4/)
+- Exercise 5: [Iron - spin polarised]
+- Exercise 6: [Iron - spinors]
+- Exercise 7: [FeSe - A challenge!]
