@@ -1,5 +1,0 @@
-&bands
-prefix = 'GaAs',
-outdir = './work/',
-filband = 'bands.dat'
-/ 

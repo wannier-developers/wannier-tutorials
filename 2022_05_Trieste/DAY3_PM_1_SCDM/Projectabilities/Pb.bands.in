@@ -1,8 +1,8 @@
 &control
     calculation     =  'bands'
     prefix          =  'pb'
-    pseudo_dir      =  'pseudo/'
-    outdir          =  './'
+    pseudo_dir      =  '../pseudo/'
+    outdir          =  './work/'
 /
 &system
     ibrav = 2, celldm(1) = 9.3555, nat= 1, ntyp= 1,

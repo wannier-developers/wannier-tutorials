@@ -1,5 +1,0 @@
-&bands
-prefix = 'si',
-outdir = './work/',
-filband = 'bands.dat'
-/ 

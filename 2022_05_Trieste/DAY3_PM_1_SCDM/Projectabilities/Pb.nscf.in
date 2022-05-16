@@ -1,7 +1,7 @@
 &control
     calculation='nscf'
-    pseudo_dir = './pseudo/',
-    outdir='./'
+    pseudo_dir = '../pseudo/',
+    outdir='./work/'
     prefix='pb'
  /
  &system
