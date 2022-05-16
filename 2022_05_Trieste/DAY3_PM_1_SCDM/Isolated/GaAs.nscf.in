@@ -3,7 +3,7 @@
   prefix='GaAs',
   tstress = .true.
   tprnfor = .true.
-  pseudo_dir = './pseudo/',
+  pseudo_dir = '../pseudo/',
   outdir='./work/'
   disk_io='low'
   wf_collect=.true.

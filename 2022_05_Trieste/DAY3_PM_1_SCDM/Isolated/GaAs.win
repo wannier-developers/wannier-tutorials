@@ -4,7 +4,7 @@ conv_tol          = 1.0d-10
 conv_window       =    3
 length_unit       =  bohr
 
-num_iter          = 
+num_iter          = 100
 num_print_cycles  = 10
 
 ! Automatic generation of initial projections
@@ -16,11 +16,11 @@ num_print_cycles  = 10
 
 wannier_plot = .true.
 
-wannier_plot_supercell =  2
+wannier_plot_supercell =  3
 wannier_plot_list      =  1-4
 
 
-exclude_bands= 1-5, 10-18
+exclude_bands= 1-5, 10-13
 
 ! To plot the WF interpolated bandstructure
 bands_plot      =  .true.

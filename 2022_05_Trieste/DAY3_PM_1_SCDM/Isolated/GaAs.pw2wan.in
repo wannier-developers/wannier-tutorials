@@ -1,5 +1,5 @@
 &inputpp
-    outdir='./'
+    outdir='./work/'
     prefix='GaAs',
     seedname = 'GaAs'
 	write_amn  = .true.

@@ -1,0 +1,6 @@
+&projwfc
+prefix = 'si',
+outdir = './work/',
+lsym = .FALSE.,
+filproj = 'si-proj'
+/

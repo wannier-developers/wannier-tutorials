@@ -1,13 +1,13 @@
-num_bands         =   13
-num_wann          =   7
+num_bands         =   20
+num_wann          =   9
 conv_tol          = 1.0d-10
 conv_window       =    3
 length_unit       =  bohr
 
-num_iter          = 
+num_iter          = 100
 num_print_cycles  = 10
 
-dis_num_iter      = 
+dis_num_iter      = 100
 dis_win_max       = 25.0
 dis_froz_max      = 7.0
 
@@ -21,11 +21,9 @@ dis_froz_max      = 7.0
 
 wannier_plot = .true.
 
-wannier_plot_supercell =  2
+wannier_plot_supercell =  3
 wannier_plot_list      =  1-7
 
-
-exclude_bands= 1-5
 
 ! To plot the WF interpolated bandstructure
 bands_plot      =  .true.

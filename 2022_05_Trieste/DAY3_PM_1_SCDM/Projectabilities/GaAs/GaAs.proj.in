@@ -1,0 +1,6 @@
+&projwfc
+prefix = 'GaAs',
+outdir = './work/',
+lsym = .FALSE.,
+filproj = 'GaAs-proj'
+/

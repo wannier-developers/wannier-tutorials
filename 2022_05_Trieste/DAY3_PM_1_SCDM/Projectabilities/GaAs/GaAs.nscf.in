@@ -3,7 +3,7 @@
   prefix='GaAs',
   tstress = .true.
   tprnfor = .true.
-  pseudo_dir = './pseudo/',
+  pseudo_dir = '../pseudo/',
   outdir='./work/'
   disk_io='low'
   wf_collect=.true.
@@ -16,7 +16,7 @@
   ecutwfc = 35.0,
   ecutrho = 150.0,
   use_all_frac = .true.
-  nbnd = 13
+  nbnd = 20
 /
 &electrons
   mixing_beta = 0.7

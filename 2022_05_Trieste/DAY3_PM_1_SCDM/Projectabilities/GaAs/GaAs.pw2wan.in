@@ -5,7 +5,7 @@
 	write_amn  = .true.
 	write_mmn  = .true.
 	write_unk  = .true.
-	! SCDM keywords *fill this in for erfc function with parameters mu = 11 and sigma = 4*
+	! SCDM keywords *fill this in for erfc function with parameters from fitting*
 
 
 

@@ -1,0 +1,37 @@
+ &control
+    calculation        =  'bands'
+    prefix             =  'si'
+    pseudo_dir         =  '../pseudo'
+    outdir             =  './work/'
+    iprint             =   2
+/
+ &system
+    ibrav              =    2
+    celldm(1)          =   10.2
+    nat                =    2
+    ntyp               =    1
+    ecutwfc            =   25.0
+    ecutrho            = 100.0,
+    nbnd               =   12,
+    nosym              = .true.
+/
+ &electrons
+    conv_thr           =   1.0d-12
+    diagonalization    =  'cg'
+    diago_full_acc     =  .true.
+/
+ATOMIC_SPECIES
+ Si 28 Si.pbe-n-van.UPF
+ATOMIC_POSITIONS {crystal}
+Si  -0.25    0.75   -0.25
+Si   0.00    0.00    0.00
+
+K_POINTS crystal
+ 7
+0.50000     0.50000     0.50000   20
+0.00000     0.00000     0.00000   20
+0.50000     0.00000     0.50000   20
+0.50000     0.25000     0.75000   20
+0.50000     0.50000     0.50000   20
+0.75000     0.37500     0.37500   20
+0.00000     0.00000     0.00000   20
