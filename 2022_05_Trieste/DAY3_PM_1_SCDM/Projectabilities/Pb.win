@@ -1,10 +1,10 @@
-use_ws_distance = .true.
-dis_num_iter = 0
-auto_projections = .true.
-
 num_bands       = 13
 num_wann        =  9
 num_iter        = 200 
+
+dis_num_iter = 0
+
+! **Automatic generation of initial projections**
 
 Begin Kpoint_Path
 G 0.00  0.00  0.00    X 0.50  0.50  0.00

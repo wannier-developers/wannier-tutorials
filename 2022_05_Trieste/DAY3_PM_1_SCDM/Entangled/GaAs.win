@@ -11,21 +11,20 @@ dis_num_iter      = 100
 dis_win_max       = 25.0
 dis_froz_max      = 7.0
 
-! Automatic generation of initial projections
+! **Automatic generation of initial projections**
 
+
+! **Exclude core valence bands**
 
 
 ! Begin Projections     
 ! random
 ! End Projections  
 
+! To plot MLWFs
 wannier_plot = .true.
-
 wannier_plot_supercell =  3
 wannier_plot_list      =  1-7
-
-
-exclude_bands= 1-5
 
 ! To plot the WF interpolated bandstructure
 bands_plot      =  .true.

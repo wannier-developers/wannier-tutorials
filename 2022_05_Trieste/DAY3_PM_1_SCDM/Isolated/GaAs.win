@@ -7,20 +7,21 @@ length_unit       =  bohr
 num_iter          = 100
 num_print_cycles  = 10
 
-! Automatic generation of initial projections
+! **Automatic generation of initial projections**
+
+
+! **Exclude valence core bands and conduction bands**
+
 
 ! *try this as well to see the difference* 
 ! Begin Projections     
 ! random
 ! End Projections  
 
+! To plot MLWFs
 wannier_plot = .true.
-
 wannier_plot_supercell =  3
 wannier_plot_list      =  1-4
-
-
-exclude_bands= 1-5, 10-13
 
 ! To plot the WF interpolated bandstructure
 bands_plot      =  .true.
