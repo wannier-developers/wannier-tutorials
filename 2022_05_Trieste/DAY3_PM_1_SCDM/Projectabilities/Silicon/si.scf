@@ -2,7 +2,7 @@
     calculation     =  'scf'
     restart_mode    =  'from_scratch'
     prefix          =  'si'
-    pseudo_dir      =  '../pseudo'
+    pseudo_dir      =  '../../pseudo'
     outdir          =  './work/'
     iprint          =   2
 /

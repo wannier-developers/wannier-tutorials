@@ -1,0 +1,6 @@
+&projwfc
+    prefix = 'pb',
+    outdir = './',
+    lsym = .FALSE.,
+    filproj = 'lead-proj'
+ /
