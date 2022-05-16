@@ -1,7 +1,7 @@
 &inputpp
-   outdir = './'
+   outdir = './work/'
    prefix = 'pb'
-   seedname = 'ex4'
+   seedname = 'Pb'
    write_amn = .true.
    write_mmn = .true.
 /
