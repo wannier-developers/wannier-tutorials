@@ -1,0 +1,43 @@
+&TB_FILE
+Hrfile = 'Graphene_hr.dat'
+Is_sparse = F
+/
+
+&CONTROL
+LandauLevel_B_calc = T       ! Hofstadter butterfly by diagonalization
+/
+
+&SYSTEM
+NSLAB = 100               ! magnetic supercell size
+NumOccupied = 1           ! NumOccupied, not used here but set it anyway.
+SOC = 0                   ! There is no SOC in the hr.dat
+E_FERMI =  -1.2533        ! e-fermi
+/
+
+&PARAMETERS
+Magp= 100   ! magnetic field flux=Magp/Nslab*\Phi_0
+/
+
+LATTICE
+Angstrom
+2.1377110  -1.2342080   0.0000000        
+0.0000000   2.4684160   0.0000000        
+0.0000000   0.0000000   10.000000        
+
+ATOM_POSITIONS
+2                               ! number of atoms for projectors
+Direct                          ! Direct or Cartisen coordinate
+C 0.333333 0.666667 0.500000 C
+C 0.666667 0.333333 0.500000 C
+
+PROJECTORS
+1 1        ! number of projectors
+C  pz
+C  pz
+
+SURFACE          
+ 0  0  1   ! magnetic field direction along the third lattice vector of LATTICE card
+ 1  0  0
+ 0  1  0
+
+
