@@ -1,12 +1,12 @@
 &TB_FILE
-Hrfile = "Wannier90_hr.dat"
+Hrfile = "wannier90_hr.dat"
 Package='VASP'
 /
 
 
 !> bulk band structure calculation flag
 &CONTROL
-FindNodes_calc  = T
+BulkBand_calc         = T
 /
 
 &SYSTEM
@@ -16,10 +16,7 @@ E_FERMI = 6.8549         ! e-fermi
 /
 
 &PARAMETERS
-Nk1 = 6            ! number k points 
-Nk2 = 6            ! number k points 
-Nk3 = 6            ! number k points 
-Gap_threshold = 0.00010 ! threshold for GapCube output
+Nk1 = 61           ! number k points 
 /
 
 LATTICE
@@ -48,8 +45,12 @@ SURFACE
  1  0  0
  0  1  0
 
-KCUBE_BULK
--0.50 -0.50 -0.50   ! Original point for 3D k plane 
- 1.00  0.00  0.00   ! The first vector to define 3d k space plane
- 0.00  1.00  0.00   ! The second vector to define 3d k space plane
- 0.00  0.00  1.00   ! The third vector to define 3d k cube
+KPATH_BULK            ! k point path
+6              ! number of k line only for bulk band
+G  0.0 0.0 0.0    X 0.0 0.0 0.5   
+X  0.0 0.0 0.5    G 0.0 0.0 0.0   
+G  0.0 0.0 0.0    Z 0.5 0.5 -0.5  
+Z  0.5 0.5 -0.5   N 0.0 0.5 0.0   
+N  0.0 0.5 0.0    P 0.25 0.25 0.25
+P  0.25 0.25 0.25 Z 0.5 0.5 -0.5  
+
