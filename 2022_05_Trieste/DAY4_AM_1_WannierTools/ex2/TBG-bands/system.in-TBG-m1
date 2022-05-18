@@ -1,0 +1,37 @@
+&PARAMETERS
+! nubmer of layers 
+number_layers =      2
+ 
+! twisted index m, theta= acos((3d0*m*m + 3d0*m + 0.5d0)/(3d0*m*m + 3d0*m + 1d0))
+twisted_index_m =      1
+ 
+! twisted angle array, unit is theta; number_layers numbers
+twisted_angle_array_input =   0  1
+ 
+! stacking sequences only three values "A", "B", "C"; Number_layers numbers
+stacking_sequences_input =    A   B
+ 
+! in plane lattice constant of graphene in unit of Angstrom
+lattice_constant_a =     2.460000
+ 
+! out of plane lattice constant of graphne in unit of Angstrom
+lattice_constant_c =     3.360000
+ 
+! vpppi (eV) p-p pi bond energy of Graphene, vpppi=-2.7 is a classical setting
+vpppi =    -2.810000
+ 
+! use POSCAR or not, use_poscar=F we will generate POSCAR, use_poscar=T use the given POSCAR
+use_poscar =   F
+ 
+! hr_generate = T, will generate hr.dat,  hr_generate = F, will not generate hr.dat
+hr_generate =   T
+ 
+! gen_sparse_hr = F, hr.dat is in wannier90 format,  hr_generate = T, hr.dat is in sparse format
+gen_sparse_hr =   F
+ 
+! hr_cutoff (eV) HmnR is set to zero if HmnR< hr_cutoff
+hr_cutoff =     0.000100
+ 
+! R is in [-iR_cut, -iR_cut+1, ..., iR_cut]
+iR_cut =    1
+/
