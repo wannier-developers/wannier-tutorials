@@ -2,7 +2,7 @@ set encoding iso_8859_1
 #set terminal  postscript enhanced color
 #set output 'landaulevel_B.eps'
 #set terminal  pngcairo truecolor enhanced  font ",60" size 1920, 1680
-set terminal  png truecolor enhanced  font ",60" size 1920, 1680
+set terminal  pngcairo truecolor enhanced  font ",60" size 1920, 1680
 set output 'landaulevel_B.png'
 unset key
 set pointsize 0.8
