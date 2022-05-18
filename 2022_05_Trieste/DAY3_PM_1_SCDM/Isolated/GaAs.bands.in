@@ -1,0 +1,36 @@
+&control
+  calculation = 'bands'
+  prefix='GaAs',
+  pseudo_dir = '../pseudo/',
+  outdir='./work/'
+/
+&system
+  ibrav = 2,
+  celldm(1) = 10.68,
+  nat = 2,
+  ntyp = 2,
+  ecutwfc = 35.0,
+  ecutrho = 150.0,
+  use_all_frac = .true.
+  nbnd = 13,
+  nosym= .true.
+/
+&electrons
+  mixing_beta = 0.7
+  conv_thr = 1.0d-8
+/
+ATOMIC_SPECIES
+ Ga  69.723  Ga.pbe-dn-kjpaw_psl.0.2.UPF
+ As  74.922  As.pbe-n-kjpaw_psl.0.2.UPF 
+ATOMIC_POSITIONS {crystal}
+ Ga 0.00 0.00 0.00
+ As 0.25 0.25 0.25
+K_POINTS {crystal_b}
+ 7
+0.50000     0.50000     0.50000   20
+0.00000     0.00000     0.00000   20
+0.50000     0.00000     0.50000   20
+0.50000     0.25000     0.75000   20
+0.50000     0.50000     0.50000   20
+0.75000     0.37500     0.37500   20
+0.00000     0.00000     0.00000   20
