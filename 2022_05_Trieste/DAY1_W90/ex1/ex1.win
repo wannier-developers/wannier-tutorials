@@ -1,5 +1,3 @@
-use_ws_distance = .true.
-
 num_bands        =   XXX
 num_wann         =   XXX
 num_iter         =  100

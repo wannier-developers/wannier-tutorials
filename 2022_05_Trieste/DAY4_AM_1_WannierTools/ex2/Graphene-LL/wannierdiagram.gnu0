@@ -1,0 +1,22 @@
+ set terminal pngcairo enhanced color font ",60" size 1920, 1680
+ set encoding iso_8859_1
+ set output 'wannierdiagram.png'
+ set pm3d
+ set size 0.9,1
+ set origin 0.05,0
+ set palette rgb 21,22,23
+ #set isosamples 50,50
+ set view map
+ unset ztics
+ unset surface
+ unset key
+ set ylabel "n"
+ set xtics 0.5
+ set ytics 1
+ set title "Wannier diagram with Nq=   100"
+ #set yrange [   ] noextend
+ set xlabel "{/Symbol F}/{/Symbol F}_0"
+ #set xlabel "Phi/Phi_0 per unit cell"
+ #set xlabel "{/Symbol F}/{/Symbol F}_0"
+ #set xrange [ ] noextend
+ splot 'wannierdiagram.dat' u 1:(($11-0.5)*4):(log($12)) w pm3d #lc palette
