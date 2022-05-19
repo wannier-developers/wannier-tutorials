@@ -1,0 +1,63 @@
+---------------------------------------
+report of tight-binding model
+---------------------------------------
+k-space dimension           = 3
+r-space dimension           = 3
+number of spin components   = 1
+periodic directions         = [0, 1, 2]
+number of orbitals          = 1
+number of electronic states = 1
+lattice vectors:
+ #  0  ===>  [    -0.5 ,     0.5 ,     0.5 ]
+ #  1  ===>  [     0.5 ,    -0.5 ,     0.5 ]
+ #  2  ===>  [     0.5 ,     0.5 ,    -0.5 ]
+positions of orbitals:
+ #  0  ===>  [     0.0 ,     0.0 ,     0.0 ]
+site energies:
+ #  0  ===>       4.5
+hoppings:
+<  0 | H |  0 + [  1 ,  0 ,  0 ] >     ===>     -1.4 +     0.0 i
+<  0 | H |  0 + [  0 ,  1 ,  0 ] >     ===>     -1.4 +     0.0 i
+<  0 | H |  0 + [  0 ,  0 ,  1 ] >     ===>     -1.4 +     0.0 i
+<  0 | H |  0 + [  1 ,  1 ,  1 ] >     ===>     -1.4 +     0.0 i
+hopping distances:
+|  pos(  0 )  - pos(  0 + [  1 ,  0 ,  0 ] ) |  =     0.866
+|  pos(  0 )  - pos(  0 + [  0 ,  1 ,  0 ] ) |  =     0.866
+|  pos(  0 )  - pos(  0 + [  0 ,  0 ,  1 ] ) |  =     0.866
+|  pos(  0 )  - pos(  0 + [  1 ,  1 ,  1 ] ) |  =     0.866
+
+----- k_path report begin ----------
+real-space lattice vectors
+ [[-0.5  0.5  0.5]
+ [ 0.5 -0.5  0.5]
+ [ 0.5  0.5 -0.5]]
+k-space metric tensor
+ [[ 2.  1.  1.]
+ [ 1.  2.  1.]
+ [ 1.  1.  2.]]
+internal coordinates of nodes
+ [[ 0.25  0.25  0.25]
+ [ 0.    0.    0.  ]
+ [-0.5   0.5   0.5 ]]
+reciprocal-space lattice vectors
+ [[-0.  1.  1.]
+ [ 1.  0.  1.]
+ [ 1.  1.  0.]]
+cartesian coordinates of nodes
+ [[ 0.5  0.5  0.5]
+ [ 0.   0.   0. ]
+ [ 1.   0.   0. ]]
+list of segments:
+  length = 0.86603  from  [ 0.25  0.25  0.25]  to  [ 0.  0.  0.]
+  length =     1.0  from  [ 0.  0.  0.]  to  [-0.5  0.5  0.5]
+node distance list: [ 0.       0.86603  1.86603]
+node index list:    [  0  46 100]
+----- k_path report end ------------
+
+---------------------------------------
+starting calculation
+---------------------------------------
+Calculating bands...
+Plotting band structure...
+Done.
+

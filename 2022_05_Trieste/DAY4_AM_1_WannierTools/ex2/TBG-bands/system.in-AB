@@ -9,7 +9,7 @@ twisted_index_m =      0
 twisted_angle_array_input =   0  0
  
 ! stacking sequences only three values "A", "B", "C"; Number_layers numbers
-stacking_sequences_input =    A   B
+stacking_sequences_input =   "A" "B"
  
 ! in plane lattice constant of graphene in unit of Angstrom
 lattice_constant_a =     2.460000

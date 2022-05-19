@@ -1,0 +1,65 @@
+---------------------------------------
+report of tight-binding model
+---------------------------------------
+k-space dimension           = 2
+r-space dimension           = 2
+number of spin components   = 1
+periodic directions         = [0, 1]
+number of orbitals          = 2
+number of electronic states = 2
+lattice vectors:
+ #  0  ===>  [     1.0 ,     0.0 ]
+ #  1  ===>  [     0.0 ,     1.0 ]
+positions of orbitals:
+ #  0  ===>  [     0.0 ,     0.0 ]
+ #  1  ===>  [     0.5 ,     0.5 ]
+site energies:
+ #  0  ===>      -5.0
+ #  1  ===>       5.0
+hoppings:
+<  0 | H |  0 + [  1 ,  0 ] >     ===>     -1.0 +     0.0 i
+<  0 | H |  0 + [  0 ,  1 ] >     ===>     -1.0 +     0.0 i
+<  1 | H |  1 + [  1 ,  0 ] >     ===>      1.0 +     0.0 i
+<  1 | H |  1 + [  0 ,  1 ] >     ===>      1.0 +     0.0 i
+<  1 | H |  0 + [  1 ,  1 ] >     ===>      0.4 +     0.0 i
+<  1 | H |  0 + [  0 ,  1 ] >     ===>      0.0 +     0.4 i
+<  1 | H |  0 + [  0 ,  0 ] >     ===>     -0.4 +     0.0 i
+<  1 | H |  0 + [  1 ,  0 ] >     ===>     -0.0 -     0.4 i
+hopping distances:
+|  pos(  0 )  - pos(  0 + [  1 ,  0 ] ) |  =       1.0
+|  pos(  0 )  - pos(  0 + [  0 ,  1 ] ) |  =       1.0
+|  pos(  1 )  - pos(  1 + [  1 ,  0 ] ) |  =       1.0
+|  pos(  1 )  - pos(  1 + [  0 ,  1 ] ) |  =       1.0
+|  pos(  1 )  - pos(  0 + [  1 ,  1 ] ) |  =    0.7071
+|  pos(  1 )  - pos(  0 + [  0 ,  1 ] ) |  =    0.7071
+|  pos(  1 )  - pos(  0 + [  0 ,  0 ] ) |  =    0.7071
+|  pos(  1 )  - pos(  0 + [  1 ,  0 ] ) |  =    0.7071
+
+----- k_path report begin ----------
+real-space lattice vectors
+ [[ 1.  0.]
+ [ 0.  1.]]
+k-space metric tensor
+ [[ 1.  0.]
+ [ 0.  1.]]
+internal coordinates of nodes
+ [[ 0.   0. ]
+ [ 0.   0.5]
+ [ 0.5  0.5]
+ [ 0.   0. ]]
+reciprocal-space lattice vectors
+ [[ 1.  0.]
+ [ 0.  1.]]
+cartesian coordinates of nodes
+ [[ 0.   0. ]
+ [ 0.   0.5]
+ [ 0.5  0.5]
+ [ 0.   0. ]]
+list of segments:
+  length =     0.5  from  [ 0.  0.]  to  [ 0.   0.5]
+  length =     0.5  from  [ 0.   0.5]  to  [ 0.5  0.5]
+  length = 0.70711  from  [ 0.5  0.5]  to  [ 0.  0.]
+node distance list: [ 0.       0.5      1.       1.70711]
+node index list:    [  0  35  70 120]
+----- k_path report end ------------
+
