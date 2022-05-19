@@ -1,0 +1,62 @@
+---------------------------------------
+report of tight-binding model
+---------------------------------------
+k-space dimension           = 0
+r-space dimension           = 2
+number of spin components   = 1
+periodic directions         = []
+number of orbitals          = 3
+number of electronic states = 3
+lattice vectors:
+ #  0  ===>  [     1.0 ,     0.0 ]
+ #  1  ===>  [     0.0 ,     1.0 ]
+positions of orbitals:
+ #  0  ===>  [     0.0 ,     1.0 ]
+ #  1  ===>  [  -0.866 ,    -0.5 ]
+ #  2  ===>  [   0.866 ,    -0.5 ]
+site energies:
+ #  0  ===>       0.0
+ #  1  ===>       0.0
+ #  2  ===>       0.0
+hoppings:
+<  0 | H |  1 >     ===>     -1.4 +     0.0 i
+<  1 | H |  2 >     ===>     -0.8 +     0.0 i
+<  2 | H |  0 >     ===>  -0.4322 -  0.6732 i
+hopping distances:
+|  pos(  0 )  - pos(  1 ) |  =    1.7321
+|  pos(  1 )  - pos(  2 ) |  =    1.7321
+|  pos(  2 )  - pos(  0 ) |  =    1.7321
+
+Explcitly computed phi Berry phase at alpha=pi/3 is -0.116
+
+Berry phases for phi loops versus alpha
+  0   0.000  -0.000
+  1   0.524  -0.049
+  2   1.047  -0.116
+  3   1.571  -0.237
+  4   2.094  -0.509
+  5   2.618  -1.263
+  6   3.142  -3.142
+  7   3.665   1.263
+  8   4.189   0.509
+  9   4.712   0.237
+ 10   5.236   0.116
+ 11   5.760   0.049
+ 12   6.283   0.000
+
+Berry phases for alpha loops versus phi
+  0   0.000  -0.518
+  1   0.524  -0.185
+  2   1.047   0.000
+  3   1.571   0.185
+  4   2.094   0.518
+  5   2.618   1.039
+  6   3.142   1.671
+  7   3.665   2.374
+  8   4.189   3.142
+  9   4.712  -2.374
+ 10   5.236  -1.671
+ 11   5.760  -1.039
+ 12   6.283  -0.518
+
+Flux =   6.283 = 2pi *   1.000

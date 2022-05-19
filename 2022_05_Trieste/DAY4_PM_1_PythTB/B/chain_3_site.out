@@ -1,0 +1,22 @@
+Wannier centers of bands 0 and 1:
+  Individual Wannier centers:  0.3188 0.9092
+  Multiband  Wannier centers:  0.3419 0.8860
+
+Finite-chain eigenenergies associated with
+Band 0: -3.15 -3.12 -3.08 -3.02 -2.96 -2.88 -2.81 -2.75 -2.69 -2.66
+Band 1: -0.32 -0.25 -0.14  0.01  0.17  0.34  0.51  0.66  0.77  1.16
+
+Finite-chain Wannier centers associated with band 0:
+ 0.3329 1.3193 2.3188 3.3188 4.3188 5.3188 6.3188 7.3188 8.3184 9.3073
+Compare with bulk:
+ 0.3188 0.3188 0.3188 0.3188 0.3188 0.3188 0.3188 0.3188 0.3188 0.3188
+
+Finite-chain Wannier centers associated with band 1:
+ 0.0697 0.9225 1.9106 2.9093 3.9092 4.9092 5.9093 6.9100 7.9155 8.9548
+Compare with bulk:
+ 0.9092 0.9092 0.9092 0.9092 0.9092 0.9092 0.9092 0.9092 0.9092 0.9092
+
+First 10 finite-chain Wannier centers associated with bands 0 and 1:
+ 0.0195 0.3627 0.8962 1.3436 1.8871 2.3421 2.8861 3.3419 3.8860 4.3419
+Compare with bulk:
+ 0.8860 0.3419 0.8860 0.3419 0.8860 0.3419 0.8860 0.3419 0.8860 0.3419
