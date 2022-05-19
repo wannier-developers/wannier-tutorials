@@ -1,5 +1,0 @@
-&bands
-   outdir='/scratch/irmik/jobs/571380/out',
-   prefix          =  'snte',
-   filband         = 'snte.bands.dat'
-/

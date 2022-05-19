@@ -1,5 +1,0 @@
-&bands
-   outdir='/scratch/irmik/jobs/580594/out',
-   prefix          =  'bi2se3',
-   filband         = 'bi2se3.bands.dat'
-/
