@@ -1,0 +1,55 @@
+---------------------------------------
+report of tight-binding model
+---------------------------------------
+k-space dimension           = 2
+r-space dimension           = 2
+number of spin components   = 1
+periodic directions         = [0, 1]
+number of orbitals          = 2
+number of electronic states = 2
+lattice vectors:
+ #  0  ===>  [     1.0 ,     0.0 ]
+ #  1  ===>  [     0.5 ,   0.866 ]
+positions of orbitals:
+ #  0  ===>  [  0.3333 ,  0.3333 ]
+ #  1  ===>  [  0.6667 ,  0.6667 ]
+site energies:
+ #  0  ===>      -0.0
+ #  1  ===>       0.0
+hoppings:
+<  0 | H |  1 + [  0 ,  0 ] >     ===>     -1.0 +     0.0 i
+<  1 | H |  0 + [  1 ,  0 ] >     ===>     -1.0 +     0.0 i
+<  1 | H |  0 + [  0 ,  1 ] >     ===>     -1.0 +     0.0 i
+hopping distances:
+|  pos(  0 )  - pos(  1 + [  0 ,  0 ] ) |  =    0.5774
+|  pos(  1 )  - pos(  0 + [  1 ,  0 ] ) |  =    0.5774
+|  pos(  1 )  - pos(  0 + [  0 ,  1 ] ) |  =    0.5774
+
+----- k_path report begin ----------
+real-space lattice vectors
+ [[ 1.       0.     ]
+ [ 0.5      0.86603]]
+k-space metric tensor
+ [[ 1.33333 -0.66667]
+ [-0.66667  1.33333]]
+internal coordinates of nodes
+ [[ 0.       0.     ]
+ [ 0.66667  0.33333]
+ [ 0.5      0.5    ]
+ [ 0.       0.     ]]
+reciprocal-space lattice vectors
+ [[ 1.      -0.57735]
+ [ 0.       1.1547 ]]
+cartesian coordinates of nodes
+ [[ 0.       0.     ]
+ [ 0.66667  0.     ]
+ [ 0.5      0.28868]
+ [ 0.       0.     ]]
+list of segments:
+  length = 0.66667  from  [ 0.  0.]  to  [ 0.66667  0.33333]
+  length = 0.33333  from  [ 0.66667  0.33333]  to  [ 0.5  0.5]
+  length = 0.57735  from  [ 0.5  0.5]  to  [ 0.  0.]
+node distance list: [ 0.       0.66667  1.       1.57735]
+node index list:    [  0  51  76 120]
+----- k_path report end ------------
+

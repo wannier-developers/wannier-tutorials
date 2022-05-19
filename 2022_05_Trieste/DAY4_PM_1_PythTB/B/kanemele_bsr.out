@@ -1,0 +1,31 @@
+----- k_path report begin ----------
+real-space lattice vectors
+ [[ 1.       0.     ]
+ [ 0.5      0.86603]]
+k-space metric tensor
+ [[ 1.33333 -0.66667]
+ [-0.66667  1.33333]]
+internal coordinates of nodes
+ [[ 0.       0.     ]
+ [ 0.66667  0.33333]
+ [ 0.5      0.5    ]
+ [ 0.33333  0.66667]
+ [ 0.       0.     ]]
+reciprocal-space lattice vectors
+ [[ 1.      -0.57735]
+ [ 0.       1.1547 ]]
+cartesian coordinates of nodes
+ [[ 0.       0.     ]
+ [ 0.66667  0.     ]
+ [ 0.5      0.28868]
+ [ 0.33333  0.57735]
+ [ 0.       0.     ]]
+list of segments:
+  length = 0.66667  from  [ 0.  0.]  to  [ 0.66667  0.33333]
+  length = 0.33333  from  [ 0.66667  0.33333]  to  [ 0.5  0.5]
+  length = 0.33333  from  [ 0.5  0.5]  to  [ 0.33333  0.66667]
+  length = 0.66667  from  [ 0.33333  0.66667]  to  [ 0.  0.]
+node distance list: [ 0.       0.66667  1.       1.33333  2.     ]
+node index list:    [  0  33  50  67 100]
+----- k_path report end ------------
+
