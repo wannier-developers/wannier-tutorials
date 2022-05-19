@@ -1,0 +1,5 @@
+&bands
+   outdir='/scratch/irmik/jobs/614041/out',
+   prefix          =  'cubi2o4',
+   filband         = 'cubi2o4.bands.dat'
+/
