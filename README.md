@@ -8,3 +8,4 @@ It currently contains material for the following events:
 - [Wannier90 hands-on of 2021 Virtual School on Electron-Phonon Physics and the EPW code, 14th June 2021](2021_06_EPW/README.md)
 - [Wannier 2022 Summer School, 16-20th May 2022 - ICTP, Trieste, Italy](2022_05_Trieste/README.md)
 - [Wannier90 hands-on of 2022 School on Electron-Phonon Physics from First Principles, 14th June 2022](2022_06_EPW_Austin/README.md)
+- [2024 School on Electron-Phonon Physics, Many-Body Perturbation Theory, and Computational Workflows, 11th June 2024](2024_06_Austin/README.md)".
