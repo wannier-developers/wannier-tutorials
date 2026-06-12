@@ -1,0 +1,22 @@
+&control
+    calculation='scf'
+    restart_mode='from_scratch',
+    pseudo_dir = './pseudo/',
+    outdir='./'
+    prefix='pb'
+ /
+ &system
+    ibrav = 2, celldm(1) = 9.3555, nat= 1, ntyp= 1,
+    ecutwfc = 47.0, ecutrho = 189,
+    occupations='smearing', smearing='cold', degauss=0.02
+ /
+ &electrons
+    conv_thr = 1.0e-9
+    mixing_beta = 0.7
+ /
+ATOMIC_SPECIES
+ Pb 207.2 Pb.pbe-dn-kjpaw_psl.0.2.2.UPF
+ATOMIC_POSITIONS (crystal)
+ Pb 0.0 0.0 0.0
+K_POINTS (automatic)
+8 8 8  0 0 0

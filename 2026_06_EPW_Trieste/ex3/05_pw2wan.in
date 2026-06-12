@@ -1,0 +1,8 @@
+&inputpp
+   outdir = './'
+   prefix = 'pb'
+   seedname = 'ex3'
+   write_amn = .true.
+   write_mmn = .true.
+/
+

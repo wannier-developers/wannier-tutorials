@@ -1,0 +1,27 @@
+&control
+    calculation     =  'bands'
+    prefix          =  'pb'
+    pseudo_dir      =  'pseudo/'
+    outdir          =  './'
+/
+&system
+    ibrav = 2, celldm(1) = 9.3555, nat= 1, ntyp= 1,
+    ecutwfc = 47.0, ecutrho = 189,
+    occupations='smearing', smearing='cold', degauss=0.02
+    nosym=.true.,nbnd=13
+/
+&electrons
+    conv_thr        =   1.0d-9
+/
+ATOMIC_SPECIES
+ Pb 207.2 Pb.pbe-dn-kjpaw_psl.0.2.2.UPF
+ATOMIC_POSITIONS crystal
+ Pb 0.0 0.0 0.0
+K_POINTS crystal_b
+6
+0.00  0.00  0.00    50
+0.50  0.50  0.00    50
+0.50  0.75  0.25    50
+0.00  0.50  0.00    50
+0.00  0.00  0.00    50
+0.00  0.50 -0.50    50
